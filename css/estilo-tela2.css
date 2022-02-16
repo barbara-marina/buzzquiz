@@ -3,11 +3,11 @@ display:flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-width:100vw;
+max-width:100%;
 }
 
 .container-tela2 .banner{
-margin-top:69px;
+/*margin-top:69px;*/
 height: 142px;
 width:100%;
 background-image: url("https://br.web.img3.acsta.net/r_654_368/newsv7/17/09/05/00/55/225725.jpg");
