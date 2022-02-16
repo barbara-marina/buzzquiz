@@ -1,0 +1,73 @@
+.container-tela2 .body{
+    background-color: #FAFAFA;
+    box-sizing: border-box;
+
+
+}    
+
+.container-tela2 .header{
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+height: 69px;
+width: 100%;
+left: 0px;
+top: 0px;
+background-color: #EC362D;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 37px;
+line-height: 43px;
+color: #FFFFFF;
+
+}
+
+.container-tela2 .banner{
+margin-top:69px;
+height: 142px;
+width:100%;
+background-image: url("https://br.web.img3.acsta.net/r_654_368/newsv7/17/09/05/00/55/225725.jpg");
+background-size: cover;
+opacity: 0.6;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.container-tela2 .banner p{
+color: #FFFFFF;
+font-size: 19px;
+}
+
+.container-tela2 .pergunta{
+background-color: red; 
+display:flex;
+justify-content: center;   
+align-items: center;
+max-width: 759px;
+max-height: 676px;
+margin-top: 24px;
+}
+
+.container-tela2 .conteudo-pergunta{
+background-color: yellow;   
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 90%;
+height: 80%;
+}
+.container-tela2 .conteudo-pergunta .alternativas{
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.container-tela2 .conteudo-pergunta img{
+width:163px;
+Height:113px;
+}
