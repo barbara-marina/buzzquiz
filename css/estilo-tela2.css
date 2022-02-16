@@ -1,29 +1,3 @@
-.container-tela2 .body{
-    background-color: #FAFAFA;
-    box-sizing: border-box;
-
-
-}    
-
-.container-tela2 .header{
-display: flex;
-justify-content: center;
-align-items: center;
-position: absolute;
-height: 69px;
-width: 100%;
-left: 0px;
-top: 0px;
-background-color: #EC362D;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 37px;
-line-height: 43px;
-color: #FFFFFF;
-
-}
-
 .container-tela2 .banner{
 margin-top:69px;
 height: 142px;
