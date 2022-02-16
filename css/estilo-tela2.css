@@ -1,3 +1,11 @@
+.container-tela2{
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width:100vw;
+}
+
 .container-tela2 .banner{
 margin-top:69px;
 height: 142px;
@@ -18,30 +26,65 @@ font-size: 19px;
 .container-tela2 .pergunta{
 background-color: red; 
 display:flex;
+flex-direction: column;
 justify-content: center;   
 align-items: center;
-max-width: 759px;
-max-height: 676px;
+width: 100%;
 margin-top: 24px;
 }
 
+
 .container-tela2 .conteudo-pergunta{
+
 background-color: yellow;   
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-width: 90%;
-height: 80%;
-}
-.container-tela2 .conteudo-pergunta .alternativas{
-display: flex;
-justify-content: center;
-align-items: center;
+margin:18px auto;
+width: 100%;
+min-width: 375px;
+max-width:759px;
 
+}
+
+.container-tela2 .alternativas-cima{
+background-color: green;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+/* padding:10px; */
+}
+
+.container-tela2 .alternativas-baixo{
+background-color: purple;
+display: flex;
+flex-direction: row;
+/* justify-content: space-between; */
+/* padding:10px; */
+
+}
+
+.container-tela2 .alternativa{
+    margin-top: 13px;
+       
 }
 
 .container-tela2 .conteudo-pergunta img{
-width:163px;
-Height:113px;
+width:95%;
 }
+
+.container-tela2 .pergunta-1{
+width: 100%;
+min-height: 89px;
+background-color: #434CA0;
+}
+
+
+@media (min-width: 759px){
+    .container-tela2 .pergunta{
+    width:759px;
+    }
+}
+
