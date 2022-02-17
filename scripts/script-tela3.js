@@ -1,3 +1,7 @@
+let dadosQuizz = {};
+
+// criarQuizzInfoBasicas();
+
 function criarQuizzInfoBasicas() {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Comece pelo começo</h1>
@@ -7,46 +11,66 @@ function criarQuizzInfoBasicas() {
             <input type="text" class="quantidade-perguntas" placeholder="Quantidade de perguntas do quizz">
             <input type="text" class="quantidade-niveis" placeholder="Quantidade de níveis do quizz">  
         </section>
-        <button onclick="criarQuizzPerguntas()">Prosseguir para criar perguntas</button>
+        <button onclick="validarInfoBasicas()">Prosseguir para criar perguntas</button>
     `;
 }
 
-function criarQuizzPerguntas() {
+function validarInfoBasicas() {
+    let tituloQuizz = document.querySelector(".container-tela3 .titulo").value;
+    let urlImagem = document.querySelector(".container-tela3 .url-imagem-quizz").value;
+    let qtddPerguntas = document.querySelector(".container-tela3 .quantidade-perguntas").value;
+    let qtddNiveis = document.querySelector(".container-tela3 .quantidade-niveis").value;
+
+    let validacaoTitulo = (tituloQuizz.length >= 20) && (tituloQuizz.length <= 65);
+    let validacaoUrlImagem = (/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/).test(urlImagem);
+    let validacaoQtssPerguntas = Number(qtddPerguntas) >=3;
+    let validacaoQtssNiveis = Number(qtddNiveis) >= 2;
+    
+    if (validacaoTitulo && validacaoUrlImagem && validacaoQtssPerguntas && validacaoQtssNiveis) {
+        dadosQuizz.title = tituloQuizz;
+        dadosQuizz.image = urlImagem;
+        criarQuizzPerguntas(qtddPerguntas, qtddNiveis);
+    } else {
+        alert("Prencha os dados corretamente!");
+    }
+}
+
+function criarQuizzPerguntas(qtddPerguntas, qtddNiveis) {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Crie suas perguntas</h1>
-        <section class="cria-perguntas">
-            <h2>Pergunta X</h2>
-            <input type="text" class="texto-pergunta" placeholder="Texto da pergunta">
-            <input type="text" class="cor-fundo-pergunta" placeholder="Cor de fundo da pergunta">
-
-            <h2>Resposta correta</h2>
-            <input type="text" class="resposta resposta-correta" placeholder="Resposta correta">
-            <input type="url" class="url-imagem" placeholder="URL da imagem">  
-
-            <h2>Respostas incorretas</h2>
-            <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-            <input type="url" class="url-imagem" placeholder="URL da imagem X">  
-            <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-            <input type="url" class="url-imagem" placeholder="URL da imagem X">  
-            <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-            <input type="url" class="url-imagem" placeholder="URL da imagem X">  
-        </section>
-
-        <section class="cria-perguntas">
-            <span>
-                <h2>Pergunta X</h2>
-                <img src="./assets/editar.png" alt="editar">
-            </span>
-        </section>
-
-        <section class="cria-perguntas">
-            <span>
-                <h2>Pergunta X</h2>
-                <img src="./assets/editar.png" alt="editar">
-            </span>
-        </section>
-
+        <div class="perguntas"></div>
         <button onclick="criarQuizzNiveis()">Prosseguir para criar níveis</button>
+    `;
+
+    for (let i = 1; i <= qtddPerguntas; i++) {
+        document.querySelector(".container-tela3 .perguntas").innerHTML += `
+             <section class="cria-perguntas">
+                <span>
+                    <h2>Pergunta ${i}</h2>
+                    <img onclick="expandirPergunta(this)" src="./assets/editar.png" alt="expandir">
+                </span>
+            </section>
+        `;
+    }
+}
+
+function expandirPergunta(botaoExpandir, numeroPergunta) {
+    botaoExpandir.parentNode.parentNode.innerHTML = `
+        <h2>Pergunta ${numeroPergunta}</h2>
+        <input type="text" class="texto-pergunta" placeholder="Texto da pergunta">
+        <input type="text" class="cor-fundo-pergunta" placeholder="Cor de fundo da pergunta">
+
+        <h2>Resposta correta</h2>
+        <input type="text" class="resposta resposta-correta" placeholder="Resposta correta">
+        <input type="url" class="url-imagem" placeholder="URL da imagem">  
+
+        <h2>Respostas incorretas</h2>
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
+        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
+        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
+        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
     `;
 }
 
@@ -84,7 +108,6 @@ function criarQuizzSucesso() {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
         <section class="sucesso-quizz">
-            <img src="./assets/teste.png" alt="imagem de fundo">
             <h3>O quão Potterhead é você?</h3>
         </section>
         <button>Acessar Quizz</button>
