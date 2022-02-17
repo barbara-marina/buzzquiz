@@ -1,11 +1,13 @@
 * {
     box-sizing: border-box;
 }
+
 body {
 	font-family: 'Roboto', sans-serif;
 
 	background-color: #fafafa;
 }
+
 header {
     width: 100vw;
     height: 69px;
@@ -21,7 +23,7 @@ header {
     justify-content: center;
     align-items: center;
 
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
 
@@ -31,6 +33,7 @@ header {
 
     margin:none;
 }
+
 .escondido {
 	display: none;
 }
