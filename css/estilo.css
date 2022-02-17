@@ -37,3 +37,7 @@ header {
 .escondido {
 	display: none;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
