@@ -30,3 +30,59 @@ requisicao.catch(
 
 //=====================Funções executadas ao iniciar o programa========================
 solicitarTodosOsQuizzes()
+
+/*
+<div class="container-tela1">
+
+            <button class="criar-quizz escondido">
+                <ion-icon name="add-circle"></ion-icon>
+            </button>
+
+            <section class="sem-quizzes-do-usuario">
+                <a>Você não criou nenhum quizz ainda :(</a>
+                <button>Criar Quizz</button>
+            </section>
+
+            <section class="lista-de-quizzes quizzes-do-usuario escondido">
+                <h3>Seus Quizzes</h3>
+                <article>
+                    <img src="" alt="Imagem do quizz">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+            </section>
+            <section class="lista-de-quizzes todos-os-quizzes">
+                <h3>Todos os Quizzes</h3>
+                <article>
+                    <img src="/assets/Imagem-praia-teste.jpg">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+
+                <article>
+                    <img src="/assets/Imagem-praia-teste.jpg">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+
+                <article>
+                    <img src="/assets/Imagem-praia-teste.jpg">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+
+                <article>
+                    <img src="/assets/Imagem-praia-teste.jpg">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+
+                <article>
+                    <img src="/assets/Imagem-praia-teste.jpg">
+                    <div class="sombra"></div>   
+                    <a>Acerte os personagens corretos dos Simpsons e prove seu amor!</a>              
+                </article>
+        
+            </section>
+        </div>
+*/
