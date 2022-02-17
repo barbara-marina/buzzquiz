@@ -3,9 +3,11 @@ div.container-tela1 {
     flex-direction: column;
     align-items: center;
     background-color: antiquewhite;
+
+    max-width: 100%;
 }
 
-section.sem-quizzes-do-usuario {
+div.container-tela1 section.sem-quizzes-do-usuario {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +24,7 @@ section.sem-quizzes-do-usuario {
     border-radius: 5px;
 }
 
-section.sem-quizzes-do-usuario a {
+div.container-tela1 section.sem-quizzes-do-usuario a {
     width: 250px;
 
     margin-bottom: 20px;
@@ -33,7 +35,7 @@ section.sem-quizzes-do-usuario a {
     text-align: center;
 }
 
-section.sem-quizzes-do-usuario button {
+div.container-tela1 section.sem-quizzes-do-usuario button {
     width: 151px;
     height: 40px;
 
@@ -47,43 +49,49 @@ section.sem-quizzes-do-usuario button {
     color: #EC362D;
 }
 
-section.lista-de-quizzes {
+div.container-tela1 section.lista-de-quizzes {
     margin-top: 38px;
 }
 
-section.lista-de-quizzes h3 {
+div.container-tela1 section.lista-de-quizzes h3 {
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
 
 }
 
-section.lista-de-quizzes article {
+div.container-tela1 section.lista-de-quizzes article {
     position: relative;
     width: 340px;
     height: 181px;
 
     margin-top: 14px;
 
+    border-radius: 5px;
+}
+
+div.container-tela1 section.lista-de-quizzes article .sombra {
+    position: absolute;  
+    bottom: 0;
+    z-index: 0;
+
+    width: 340px;
+    height: 181px;
+
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
     border-radius: 5px;
 }
 
-section.lista-de-quizzes article img {
-    position: absolute;  
-    z-index: 0;
-
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
-
+div.container-tela1 section.lista-de-quizzes article img {
     width: 340px;
     height: 181px;
+    border-radius: 5px;
 }
 
-section.lista-de-quizzes article a {
+div.container-tela1 section.lista-de-quizzes article a {
     position: absolute;  
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 19.5px;
+    bottom: 7px;
     z-index: 0;
 
     width: 301px;
@@ -93,5 +101,4 @@ section.lista-de-quizzes article a {
     font-size: 19px;
     line-height: 22px;
     color: #FFFFFF;
-    background-color: #EC362D;
 }
