@@ -2,7 +2,6 @@ let ID_DO_QUIZZ = 2;
 
 function esconderTela1(){
     let containerTela1 = document.querySelector(".container-tela1");
-    console.log(containerTela1);
     containerTela1.classList.add("escondido");
 }
 

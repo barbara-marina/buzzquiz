@@ -2,7 +2,7 @@ div.container-tela1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: #FAFAFA;
 
     max-width: 100%;
 }
@@ -106,5 +106,9 @@ div.container-tela1 section.lista-de-quizzes article p {
 }
 
 div.container-tela1.escondido {
+    display: none;
+}
+
+div.container-tela1 section.sem-quizzes-do-usuario.escondido {
     display: none;
 }
