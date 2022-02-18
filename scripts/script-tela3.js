@@ -1,7 +1,5 @@
 let dadosQuizz = {};
 
-// criarQuizzInfoBasicas();
-
 function criarQuizzInfoBasicas() {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Comece pelo começo</h1>
@@ -39,7 +37,7 @@ function criarQuizzPerguntas(qtddPerguntas, qtddNiveis) {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Crie suas perguntas</h1>
         <div class="perguntas"></div>
-        <button onclick="criarQuizzNiveis()">Prosseguir para criar níveis</button>
+        <button onclick="validarPerguntas()">Prosseguir para criar níveis</button>
     `;
 
     for (let i = 1; i <= qtddPerguntas; i++) {
@@ -47,14 +45,14 @@ function criarQuizzPerguntas(qtddPerguntas, qtddNiveis) {
              <section class="cria-perguntas">
                 <span>
                     <h2>Pergunta ${i}</h2>
-                    <img onclick="expandirPergunta(this)" src="./assets/editar.png" alt="expandir">
+                    <img onclick="expandirPergunta(this, ${i}, ${qtddNiveis})" src="./assets/editar.png" alt="expandir">
                 </span>
             </section>
         `;
     }
 }
 
-function expandirPergunta(botaoExpandir, numeroPergunta) {
+function expandirPergunta(botaoExpandir, numeroPergunta, qtddNiveis) {
     botaoExpandir.parentNode.parentNode.innerHTML = `
         <h2>Pergunta ${numeroPergunta}</h2>
         <input type="text" class="texto-pergunta" placeholder="Texto da pergunta">
@@ -65,13 +63,17 @@ function expandirPergunta(botaoExpandir, numeroPergunta) {
         <input type="url" class="url-imagem" placeholder="URL da imagem">  
 
         <h2>Respostas incorretas</h2>
-        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
-        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
-        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta X">
-        <input type="url" class="url-imagem" placeholder="URL da imagem X">  
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta 1">
+        <input type="url" class="url-imagem" placeholder="URL da imagem 1">  
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta 2">
+        <input type="url" class="url-imagem" placeholder="URL da imagem 2">  
+        <input type="text" class="resposta resposta-incorreta" placeholder="Resposta Incorreta 3">
+        <input type="url" class="url-imagem" placeholder="URL da imagem 3">  
     `;
+}
+
+function validarPerguntas() {
+    let perguntasValidas = true;
 }
 
 function criarQuizzNiveis() {
