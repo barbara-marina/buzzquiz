@@ -24,7 +24,7 @@ div.container-tela1 section.sem-quizzes-do-usuario {
     border-radius: 5px;
 }
 
-div.container-tela1 section.sem-quizzes-do-usuario a {
+div.container-tela1 section.sem-quizzes-do-usuario p {
     width: 250px;
 
     margin-bottom: 20px;
@@ -88,7 +88,7 @@ div.container-tela1 section.lista-de-quizzes article img {
     border-radius: 5px;
 }
 
-div.container-tela1 section.lista-de-quizzes article a {
+div.container-tela1 section.lista-de-quizzes article p {
     position: absolute;  
     left: 19.5px;
     bottom: 7px;
@@ -101,4 +101,10 @@ div.container-tela1 section.lista-de-quizzes article a {
     font-size: 19px;
     line-height: 22px;
     color: #FFFFFF;
+
+    word-wrap: break-word
+}
+
+div.container-tela1.escondido {
+    display: none;
 }

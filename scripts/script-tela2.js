@@ -1,13 +1,24 @@
 let ID_DO_QUIZZ = 2;
 
+function esconderTela1(){
+    let containerTela1 = document.querySelector(".container-tela1");
+    console.log(containerTela1);
+    containerTela1.classList.add("escondido");
+}
 
-const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
+function solicitarQuizz(quizzSelecionado){
+    /*O parâmetro quizzSelecionado recebe o "this" do quizz que foi escolhido. Se for mais útil para vc, posso filtar o id;
+    por enquanto essa informação não está sendo usada aqui no seu código, mas acredito que possa ser útil*/
+    const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
-promisse.then(carregarQuizSelecionado)
+    promisse.then(carregarQuizSelecionado);
+
+    carregarQuizSelecionado();
+}
 
 
 function carregarQuizSelecionado(response){
-
+    esconderTela1();
     console.log(response?.data.questions);
 
     let perguntas = response?.data.questions;
@@ -33,7 +44,7 @@ function carregarQuizSelecionado(response){
 
 }
 
-carregarQuizSelecionado();
+solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
 
 function carregarRespostas(answers){
 
