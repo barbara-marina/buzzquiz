@@ -3,6 +3,7 @@ let perguntasValidas = true;
 
 
 function criarQuizzInfoBasicas() {
+    esconderTela1();
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Comece pelo começo</h1>
         <section class="info-basicas">

@@ -2,6 +2,11 @@ const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 let listaIdQuizzesDoUsuario = [1,2,3,4];
 let controleHaQuizzdoUsuario = true;
 
+function esconderTela1(){
+    let containerTela1 = document.querySelector(".container-tela1");
+    containerTela1.classList.add("escondido");
+}
+
 function inserirQuizzesNaTela(lista){
     let listaDeQuizzes = lista.data;
     let secaoDeTodosOsQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes");
@@ -52,7 +57,7 @@ function carregarLayoutTela1(){
                 <ion-icon name="add-circle"></ion-icon>
             </button>
 
-            <section class="sem-quizzes-do-usuario escondido">
+            <section class="sem-quizzes-do-usuario escondido" onclick="criarQuizzInfoBasicas()">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button onclick="criarQuizzInfoBasicas()">Criar Quizz</button>
             </section>
