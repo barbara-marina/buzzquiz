@@ -9,12 +9,30 @@ function esconderTela1(){
 
 function inserirQuizzesNaTela(lista){
     let listaDeQuizzes = lista.data;
-    let secaoDeTodosOsQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes");
+    let containerQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes div.container-quizzes");
 
-    secaoDeTodosOsQuizzes.innerHTML="<h3>Todos os Quizzes</h3>";
+    containerQuizzes.innerHTML="";
 
     for(let i=0; i<listaDeQuizzes.length; i++){
-        secaoDeTodosOsQuizzes.innerHTML+=`
+        containerQuizzes.innerHTML+=`
+            <article onclick="solicitarQuizz(this)">
+                <img src="${listaDeQuizzes[i].image}">
+                <div class="sombra"></div>   
+                <p>${listaDeQuizzes[i].title}</p>              
+            </article>
+        `;
+    }
+
+}
+
+function inserirQuizzesDoUsuarioNaTela(lista){
+    let listaDeQuizzes = lista.data;
+    let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
+
+    containerQuizzes.innerHTML="";
+
+    for(let i=0; i<listaDeQuizzes.length; i++){
+        containerQuizzes.innerHTML+=`
             <article onclick="solicitarQuizz(this)">
                 <img src="${listaDeQuizzes[i].image}">
                 <div class="sombra"></div>   
@@ -34,13 +52,19 @@ function solicitarTodosOsQuizzes(){
     );
 }
 
+function solicitarQuizzesDoUsuario(){
+    let requisicao = axios.get(URL_BUZZQUIZZ); //mudar essa lógica depois que for capaz de filtrar quizzes do usuario
+
+    requisicao.then(inserirQuizzesDoUsuarioNaTela);
+    requisicao.catch(
+        ()=> console.log("Erro ao solitar lista de quizzes")
+    );
+}
+
 function carregarLayoutTela1(){
-    let containerTela1 = document.querySelector(".container-tela1");
+    let containerTela1 = document.querySelector(".container-tela1 div.capsula");
     if (controleHaQuizzdoUsuario === false){
         containerTela1.innerHTML=`
-            <button class="criar-quizz escondido" onclick="criarQuizzInfoBasicas()">
-                <ion-icon name="add-circle"></ion-icon>
-            </button>
 
             <section class="sem-quizzes-do-usuario">
                 <p>Você não criou nenhum quizz ainda :(</p>
@@ -49,27 +73,42 @@ function carregarLayoutTela1(){
 
             <section class="lista-de-quizzes quizzes-do-usuario escondido"></section>
 
-            <section class="lista-de-quizzes todos-os-quizzes"></section>
+            <section class="lista-de-quizzes todos-os-quizzes">
+                <h3>Todos os Quizzes</h3>
+                <div class="container-quizzes"></div>
+            </section>
         `;
+
+        solicitarTodosOsQuizzes()
+
     }else {
         containerTela1.innerHTML=`
-            <button class="criar-quizz " onclick="criarQuizzInfoBasicas()">
-                <ion-icon name="add-circle"></ion-icon>
-            </button>
-
-            <section class="sem-quizzes-do-usuario escondido" onclick="criarQuizzInfoBasicas()">
-                <p>Você não criou nenhum quizz ainda :(</p>
-                <button onclick="criarQuizzInfoBasicas()">Criar Quizz</button>
+            <section class="lista-de-quizzes quizzes-do-usuario ">
+                <h3> Seus Quizzes
+                    <button class="criar-quizz " onclick="criarQuizzInfoBasicas()">
+                        <ion-icon name="add-circle"></ion-icon>
+                    </button>
+                </h3>
+                <div class="container-quizzes"></div>
             </section>
 
-            <section class="lista-de-quizzes quizzes-do-usuario escondido"></section>
-
-            <section class="lista-de-quizzes todos-os-quizzes"></section>
+            <section class="lista-de-quizzes todos-os-quizzes">
+                <h3>Todos os Quizzes</h3>
+                <div class="container-quizzes"></div>
+            </section>
         `;
+
+        solicitarQuizzesDoUsuario();
+        solicitarTodosOsQuizzes();
+
     }
     
+}
 
-    solicitarTodosOsQuizzes()
+function chamarTela1(){
+    let containerTela1 = document.querySelector(".container-tela1");
+    containerTela1.classList.remove("escondido");
+    carregarLayoutTela1();
 }
 
 //=====================Funções executadas ao iniciar o programa========================
@@ -79,55 +118,38 @@ function carregarLayoutTela1(){
 /*
 <div class="container-tela1">
 
-            <button class="criar-quizz escondido">
-                <ion-icon name="add-circle"></ion-icon>
-            </button>
+    <div class="capsula">
+    
+        <section class="sem-quizzes-do-usuario">
+            <p>Você não criou nenhum quizz ainda :(</p>
+            <button>Criar Quizz</button>
+        </section>
 
-            <section class="sem-quizzes-do-usuario">
-                <p>Você não criou nenhum quizz ainda :(</p>
-                <button>Criar Quizz</button>
-            </section>
+        <section class="lista-de-quizzes quizzes-do-usuario escondido">
+            <h3>Seus Quizzes
+                <button class="criar-quizz escondido">
+                    <ion-icon name="add-circle"></ion-icon>
+                </button>
+            </h3>
 
-            <section class="lista-de-quizzes quizzes-do-usuario escondido">
-                <h3>Seus Quizzes</h3>
+            <div class="container-quizzes">
                 <article>
                     <img src="" alt="Imagem do quizz">
                     <div class="sombra"></div>   
                     <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
                 </article>
-            </section>
-            <section class="lista-de-quizzes todos-os-quizzes">
-                <h3>Todos os Quizzes</h3>
-                <article>
-                    <img src="/assets/Imagem-praia-teste.jpg">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-
-                <article>
-                    <img src="/assets/Imagem-praia-teste.jpg">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-
-                <article>
-                    <img src="/assets/Imagem-praia-teste.jpg">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-
-                <article>
-                    <img src="/assets/Imagem-praia-teste.jpg">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-
-                <article>
-                    <img src="/assets/Imagem-praia-teste.jpg">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-        
-            </section>
-        </div>
+            </div>
+            
+        </section>
+        <section class="lista-de-quizzes todos-os-quizzes">
+            <h3>Todos os Quizzes</h3>
+            <article>
+                <img src="/assets/Imagem-praia-teste.jpg">
+                <div class="sombra"></div>   
+                <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
+            </article>
+    
+        </section>
+    </div>
+</div>
 */

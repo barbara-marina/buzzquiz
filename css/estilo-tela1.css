@@ -7,13 +7,25 @@ div.container-tela1 {
     max-width: 100%;
 }
 
+div.container-tela1.escondido {
+    display: none;
+}
+
+div.container-tela1 div.capsula {
+    max-width: 78%;
+    margin: auto;
+
+}
+
+
 div.container-tela1 section.sem-quizzes-do-usuario {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    width: 340px;
+    /*width: 340px;*/
+    max-width: 100%;
     height: 181px;
 
     margin-top: 31px;
@@ -22,6 +34,7 @@ div.container-tela1 section.sem-quizzes-do-usuario {
     border: 1px dashed #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
+
 }
 
 div.container-tela1 section.sem-quizzes-do-usuario p {
@@ -50,14 +63,49 @@ div.container-tela1 section.sem-quizzes-do-usuario button {
 }
 
 div.container-tela1 section.lista-de-quizzes {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
     margin-top: 38px;
+
+}
+
+div.container-tela1 section.lista-de-quizzes div.container-quizzes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: auto;
+
 }
 
 div.container-tela1 section.lista-de-quizzes h3 {
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
+}
 
+div.container-tela1 section.lista-de-quizzes.quizzes-do-usuario h3{
+    position: relative;
+
+}
+
+div.container-tela1 section.lista-de-quizzes.quizzes-do-usuario h3 button.criar-quizz {
+    position: absolute;
+    left: 125px;
+    bottom: 0;
+
+    width: 31px;
+    height: 30px;
+
+    z-index: 0;
+
+    border-style: none;
+    border-radius: 500px;
+    background: none;
+
+    font-size: 35px;
+    color:#EC362D;
 }
 
 div.container-tela1 section.lista-de-quizzes article {
@@ -66,6 +114,7 @@ div.container-tela1 section.lista-de-quizzes article {
     height: 181px;
 
     margin-top: 14px;
+    margin-right: 15px;
 
     border-radius: 5px;
 }
@@ -96,7 +145,7 @@ div.container-tela1 section.lista-de-quizzes article p {
 
     width: 301px;
 
-    text-align: center;
+    text-align: left;
 
     font-size: 19px;
     line-height: 22px;
@@ -105,10 +154,32 @@ div.container-tela1 section.lista-de-quizzes article p {
     word-wrap: break-word
 }
 
-div.container-tela1.escondido {
+div.container-tela1 section.sem-quizzes-do-usuario.escondido {
     display: none;
 }
 
-div.container-tela1 section.sem-quizzes-do-usuario.escondido {
-    display: none;
+@media (max-width: 1100px)
+{
+    div.container-tela1 div.capsula{
+        max-width: 100%;
+    }
+
+    div.container-tela1 section.lista-de-quizzes.quizzes-do-usuario h3 button.criar-quizz {
+        left: auto;
+        right: 5px;
+        
+    }
+
+    div.container-tela1 section.lista-de-quizzes{
+        margin-top: 35px;
+    }
+
+    div.container-tela1 section.lista-de-quizzes div.container-quizzes {
+        flex-direction: column;
+    }
+
+    div.container-tela1 section.lista-de-quizzes article{
+        margin-right: 0;
+    }
+
 }
