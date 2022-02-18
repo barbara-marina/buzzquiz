@@ -1,6 +1,4 @@
 let dadosQuizz = {};
-let perguntasValidas = true;
-
 
 function criarQuizzInfoBasicas() {
     esconderTela1();
@@ -75,7 +73,10 @@ function expandirPergunta(botaoExpandir, numeroPergunta) {
     `;
 }
 
-function validarPerguntas() {
+function validarPerguntas(qtddNiveis) {
+    dadosQuizz.questions = [];
+    let perguntasValidas = true;   
+
     const perguntas = document.querySelector(".container-tela3 .perguntas").children;
 
     for (let i = 0; i < perguntas.length; i++) {
@@ -96,57 +97,143 @@ function validarPerguntas() {
         let respostaIncorreta3Valida = (incorreta2Valida && perguntas[i].children[11].value.length !== 0) || (perguntas[i].children[11].value.length === 0 && perguntas[i].children[12].value.length === 0);
         let urlImagemIncorreta3Valida = ((/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/).test(perguntas[i].children[12].value) && (perguntas[i].children[12].value.length !== 0) && (perguntas[i].children[11].value.length !== 0) && incorreta2Valida) || (perguntas[i].children[11].value.length === 0 && perguntas[i].children[12].value.length === 0);
         let incorreta3Valida = respostaIncorreta3Valida && urlImagemIncorreta3Valida; 
-    
+
         if (tituloValido && corFundoValida && respostaCorretaValida && urlImagemCorretaValida && incorreta1Valida && incorreta2Valida && incorreta3Valida) {
+
+            let dadosPerguntas = {}
+            dadosPerguntas = {
+                title: perguntas[i].children[1].value,
+                color: perguntas[i].children[2].value,
+                answers: [
+                    {
+                        text: perguntas[i].children[4].value,
+                        image: perguntas[i].children[5].value,
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: perguntas[i].children[7].value,
+                        image: perguntas[i].children[8].value,
+                        isCorrectAnswer: false
+                    }
+                ]
+            };
+
+            if(perguntas[i].children[9].value.length !== 0 && perguntas[i].children[10].value.length !== 0){
+                dadosPerguntas.answers.push({
+                    text: perguntas[i].children[9].value,
+                    image: perguntas[i].children[10].value,
+                    isCorrectAnswer: false
+                });
+
+                if(perguntas[i].children[11].value.length !== 0 && perguntas[i].children[12].value.length !== 0){
+                    dadosPerguntas.answers.push({
+                        text: perguntas[i].children[11].value,
+                        image: perguntas[i].children[12].value,
+                        isCorrectAnswer: false
+                    });
+                }
+            }
+
+            dadosQuizz.questions.push(dadosPerguntas);
+
             perguntasValidas = perguntasValidas && true;
+
         } else {
             perguntasValidas = perguntasValidas && false;
         }
-        console.log(perguntasValidas);
     }
 
     if(perguntasValidas === false){
         alert("Preenchas os dados corretamente.");
     } else {
-        criarQuizzNiveis();
+        criarQuizzNiveis(qtddNiveis);
     }
 }
 
 function criarQuizzNiveis(qtddNiveis) {
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Agora, decida os níveis!</h1>
-        <section class="cria-niveis">
-            <h2>Nível X</h2>
-            <input type="text" class="titulo-nivel" placeholder="Título do Nível">
-            <input type="text" class="acerto-minimo" placeholder="% de acerto mínima">
-            <input type="url" class="url-imagem-nivel" placeholder="URL da imagem do nível">  
-            <textarea cols="45" rows="10" class="descricao-nivel" placeholder="Descrição do nível"></textarea>
-            
-        </section>
+        <div class="niveis"></div>
+        <button onclick="validarNiveis()">Finalizar Quizz</button>
+    `;
 
-        <section class="cria-niveis">
-            <span>
-                <h2>Nível X</h2>
-                <img src="./assets/editar.png" alt="editar">
-            </span>
-        </section>
+    for (let i = 1; i <= qtddNiveis; i++) {
+        document.querySelector(".container-tela3 .niveis").innerHTML += `
+            <section class="cria-niveis">
+                <span>
+                    <h2>Nível ${i}</h2>
+                    <img  onclick="expandirNiveis(this, ${i})" src="./assets/editar.png" alt="editar">
+                </span>
+            </section>
+        `;
 
-        <section class="cria-niveis">
-            <span>
-                <h2>Nível X</h2>
-                <img src="./assets/editar.png" alt="editar">
-            </span>
-        </section>
+    }
+}
 
-        <button onclick="criarQuizzSucesso()">Finalizar Quizz</button>
+function expandirNiveis(botaoExpandir, numeroNivel) {
+    botaoExpandir.parentNode.parentNode.innerHTML = `
+        <h2>Nível ${numeroNivel}</h2>
+        <input type="text" class="titulo-nivel" placeholder="Título do Nível">
+        <input type="text" class="acerto-minimo" placeholder="% de acerto mínima">
+        <input type="url" class="url-imagem-nivel" placeholder="URL da imagem do nível">  
+        <textarea cols="45" rows="10" class="descricao-nivel" placeholder="Descrição do nível"></textarea>
     `;
 }
 
-function expandirNiveis() {
-    
+function validarNiveis() {
+    let niveisValidos = true;
+
+    dadosQuizz.levels = [];
+
+    let porcentagemMinimaZeroArray = [];
+
+    const niveis = document.querySelector(".container-tela3 .niveis").children;
+
+    for (let i = 0; i < niveis.length; i++){
+        let tituloNivelValido = (niveis[i].children[1].value.length !== 0) && (niveis[i].children[1].value.length >= 10);
+        let porcentagemMinimaValida = (niveis[i].children[2].value.length !== 0) && (niveis[i].children[2].value >= 0) && (niveis[i].children[2].value <=100);
+        let porcentagemMinimaZero = niveis[i].children[2].value == 0;
+        let urlValida = (niveis[i].children[3].value.length !== 0) && (/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/).test(niveis[i].children[3].value);
+        let descricaoValida = (niveis[i].children[4].value.length >= 30) && (niveis[i].children[4].value.length !== 0);
+        
+        if (tituloNivelValido && porcentagemMinimaValida && urlValida && descricaoValida) {
+            let dadosNiveis = {};
+            dadosNiveis = {
+                title: niveis[i].children[1].value,
+                image: niveis[i].children[3].value,
+                text: niveis[i].children[4].value,
+                minValue: Number(niveis[i].children[2].value)
+            };
+            
+            dadosQuizz.levels.push(dadosNiveis);
+            
+            niveisValidos = niveisValidos && true;
+
+            porcentagemMinimaZeroArray.push(porcentagemMinimaZero);
+
+        } else {
+            niveisValidos = niveisValidos && false;
+        }
+    }
+    if((niveisValidos === false) || (porcentagemMinimaZeroArray.every(elemento => elemento === false))){
+        alert("Preenchas os dados corretamente.");
+    } else {
+        enviarDadosQuizz();
+        console.log(dadosQuizz);
+    }
 }
 
-function criarQuizzSucesso() {
+function enviarDadosQuizz(){
+    let promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", dadosQuizz);
+    promessa.then(criarQuizzSucesso);
+    promessa.catch(erroTelaTres);
+
+}
+
+function criarQuizzSucesso(resposta) {
+    alert("foooi");
+    console.log(resposta.data);
+
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
         <section class="sucesso-quizz">
@@ -155,4 +242,9 @@ function criarQuizzSucesso() {
         <button>Acessar Quizz</button>
         <p>Voltar pra home</p>
     `;
+}
+
+function erroTelaTres(resposta) {
+    alert("não foi");
+    console.log(resposta, resposta.status);
 }
