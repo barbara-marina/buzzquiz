@@ -44,7 +44,7 @@ function carregarQuizSelecionado(response){
 
 }
 
-solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+//solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
 
 function carregarRespostas(answers, indexPergunta){
 
