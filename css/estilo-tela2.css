@@ -13,7 +13,6 @@ width:100%;
 /*margin-top:69px;*/
 height: 142px;
 width: 100vw;
-/* background-image: url("https://br.web.img3.acsta.net/r_654_368/newsv7/17/09/05/00/55/225725.jpg"); */
 background-size: cover;
 opacity: 0.6;
 display: flex;
@@ -79,6 +78,28 @@ font-size: 13px;
 line-height: 15px;
 }
 
+.true{
+    color: green;  
+}
+
+.false{
+    color: red;
+}
+
+.esconder-resposta{
+    color: #000000;  
+}
+
+.opacidade{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.selecionada{
+    pointer-events: none; 
+}
+    
+
 .container-tela2 .alternativa-esquerda , .container-tela2 .alternativa-direita {
 width: 163px;
 display: grid;
@@ -95,15 +116,7 @@ width: 163px;
 height: 113px;
 }
 
-.true{
-color: green;
 
-}
-
-.false{
-color: red;
-
-}
 
 
 

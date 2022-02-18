@@ -1,4 +1,7 @@
-let ID_DO_QUIZZ = 2;
+let ID_DO_QUIZZ = 4;
+let contadorPerguntas = 0;
+let contadorAcertos = 0;
+let numeroPerguntas = null;
 
 function solicitarQuizz(quizzSelecionado){
     /*O parâmetro quizzSelecionado recebe o "this" do quizz que foi escolhido. Se for mais útil para vc, posso filtar o id;
@@ -13,162 +16,101 @@ function solicitarQuizz(quizzSelecionado){
 
 function carregarQuizSelecionado(response){
     esconderTela1();
-    console.log(response?.data.questions);
 
+    console.log(response?.data.questions);
+    console.log(response?.data.questions[0].answers);
+    
     let perguntas = response?.data.questions;
-    let numeroPerguntas = perguntas?.length;
+    numeroPerguntas = perguntas?.length;
     
     let container = document.querySelector(".container-tela2") 
-    container.innerHTML=`<div class="banner"><p>${response.data.title}</p></div>`;
+    container.innerHTML=`<div class="banner"><p>${response?.data.title}</p></div>`;
 
     let banner = document.querySelector(".banner");
-    banner.style.backgroundimage = `url("${response?.data.image}")`
+    banner.style.backgroundImage = `url("${response?.data.image}")`
     
-    for (let i=0; i<=numeroPerguntas; i++){
+    for (let i=0; i<numeroPerguntas; i++){
+      
     document.querySelector(".container-tela2").innerHTML += ` 
 
-            <div class="bloco-perguntas">
-                <div class="pergunta">${perguntas[i].title}</div>
-                <div class="alternativas">
-              ${carregarRespostas(perguntas[i].answers)}
-                </div>
-            </div> 
-            ` 
+        <div class="bloco-perguntas">
+            <div class="pergunta">${perguntas[i]?.title}</div>
+            <div class="alternativas">
+            ${carregarRespostas(perguntas[i]?.answers, i)}
+            </div>
+        </div> 
+        ` 
     }
 
 }
 
 solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
 
-function carregarRespostas(answers){
+function carregarRespostas(answers, indexPergunta){
 
 let respostas ="";
 
 for (let i=0; i<answers.length; i++){
-respostas  +=`
-<div class="alternativa-1 ">
-    <img class="imagem-pergunta" src="${answers[i].image}" >
-    <p class="${answers[i].isCorrectAnswer}">${answers[i].text}</p>
-</div>
-
-`
-
+    respostas  +=`
+    <div>
+        <img onclick="verificaResposta(this, ${i})" class="imagem-pergunta" src="${answers[i].image}" >
+        <p><span class="${answers[i].isCorrectAnswer} esconder-resposta" id="${indexPergunta}-${i}-${answers[i].isCorrectAnswer}">${answers[i].text}</span></p>
+    </div>
+    `
 }
 
-return respostas
+    return respostas
 }
 
-//     <div class="alternativas">
-//     <div class="alternativa-esquerda">
-//         <div class="alternativa-1 ${perguntas[i].answers[j].isCorrectAnswer}">
-//             <img class="imagem-pergunta" src="${perguntas[i].answers[j].imagem}" >
-//             <p>${perguntas[i].answers[j].text}</p>
-//         </div>
-//         <div class="alternativa-2 ${perguntas[i].answers[i].isCorrectAnswer}">
-//             <img class="imagem-pergunta" src="${perguntas[i].answers[j].imagem}" >
-//             <p>${perguntas[i].answers[i].text}</p>
-//         </div>
-//     </div>
-//     <div class="alternativa-direita">
-//         <div class="alternativa-3 ${perguntas[i].answers[i].isCorrectAnswer}">
-//             <img class="imagem-pergunta" src="${perguntas[i].answers[j].imagem}" >
-//             <p>${perguntas[i].answers[i].text}</p>
-//         </div>
-//         <div class="alternativa-4 ${perguntas[i].answers[i+3].isCorrectAnswer}">
-//             <img class="imagem-pergunta" src="${perguntas[i].answers[j].imagem}" >
-//             <p>${perguntas[i].answers[j].text}</p>
-//         </div>
-//     </div>
-// </div>
-// }
 
-// function quizSelecionado(){
-//     document.querySelector(".container-tela2").innerHTML = ` 
 
-//     <div class="banner"><p>${response.title}</p></div>
-            
-//             <div class="bloco-perguntas">
-//                 <div class="pergunta">Pergunta 1</div>
-//                 <div class="alternativas">
-//                     <div class="alternativa-esquerda">
-//                         <div class="alternativa-1">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 1</p>
-//                         </div>
-//                         <div class="alternativa-2">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 2</p>
-//                         </div>
-//                     </div>
-//                     <div class="alternativa-direita">
-//                         <div class="alternativa-3">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 3</p>
-//                         </div>
-//                         <div class="alternativa-4">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 4</p>
-//                         </div>
-//                     </div>
-//                 </div>  
-
-            
-//             </div>
-//             <div class="bloco-perguntas">
-//                 <div class="pergunta">Pergunta 1</div>
-//                 <div class="alternativas">
-//                     <div class="alternativa-esquerda">
-//                         <div class="alternativa-1">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 1</p>
-//                         </div>
-//                         <div class="alternativa-2">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 2</p>
-//                         </div>
-//                     </div>
-//                     <div class="alternativa-direita">
-//                         <div class="alternativa-3">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 3</p>
-//                         </div>
-//                         <div class="alternativa-4">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 4</p>
-//                         </div>
-//                     </div>
-//                 </div>  
-
-            
-//             </div>  
-//             <div class="bloco-perguntas">
-//                 <div class="pergunta">Pergunta 1</div>
-//                 <div class="alternativas">
-//                     <div class="alternativa-esquerda">
-//                         <div class="alternativa-1">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 1</p>
-//                         </div>
-//                         <div class="alternativa-2">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 2</p>
-//                         </div>
-//                     </div>
-//                     <div class="alternativa-direita">
-//                         <div class="alternativa-3">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 3</p>
-//                         </div>
-//                         <div class="alternativa-4">
-//                             <img class="imagem-pergunta" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/08/14/o-gatinho-de-cada-signo-15721.jpeg" >
-//                             <p>Alternativa 4</p>
-//                         </div>
-//                     </div>
-//                 </div>  
-
-            
-//             </div> 
+function verificaResposta(cartaSelecionada, indiceResposta){
+    let array = cartaSelecionada.parentNode.parentNode.children;
+    // console.log("antes da função",cartaSelecionada.parentNode.parentNode.children);
+    cartaSelecionada.parentNode.parentNode.children[indiceResposta].classList.add("selecionada")
+    contadorPerguntas++;
+  
     
-//     `
-// }
+
+    for( let i=0; i<array.length; i++){
+
+        // console.log("entrei no for", array[i])
+
+        array[i].children[1].children[0].classList.remove("esconder-resposta")
+
+        if(array[i].classList.contains("selecionada") == false){
+            array[i].classList.add("opacidade") 
+    }
+}
+
+    contarPontos(array[indiceResposta].children[1].children[0]);
+    // console.log(contadorPerguntas,contadorAcertos)
+    finalizarQuizz();
+}
+
+    
+
+
+function contarPontos(spanSelecionado){
+
+    if (spanSelecionado.classList.contains("true")){
+        contadorAcertos++
+    }
+}
+
+
+function finalizarQuizz(){
+
+    if(contadorPerguntas == numeroPerguntas){
+        let percentualAcerto
+    
+    }
+
+}
+    
+
+
+
+
+
 
