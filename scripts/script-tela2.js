@@ -1,4 +1,4 @@
-let ID_DO_QUIZZ = 4;
+let ID_DO_QUIZZ = 1;
 let contadorPerguntas = 0;
 let contadorAcertos = 0;
 let numeroPerguntas = null;
@@ -44,13 +44,21 @@ function carregarQuizSelecionado(response){
 
 }
 
-//solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+// solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+
+function comparador() { 
+	return Math.random() - 0.5; 
+}
 
 function carregarRespostas(answers, indexPergunta){
 
+let arrayRespostas = answers;
+
+arrayRespostas.sort(comparador);
+
 let respostas ="";
 
-for (let i=0; i<answers.length; i++){
+for (let i=0; i<arrayRespostas.length; i++){
     respostas  +=`
     <div>
         <img onclick="verificaResposta(this, ${i})" class="imagem-pergunta" src="${answers[i].image}" >
@@ -84,7 +92,7 @@ function verificaResposta(cartaSelecionada, indiceResposta){
 }
 
     contarPontos(array[indiceResposta].children[1].children[0]);
-    // console.log(contadorPerguntas,contadorAcertos)
+    console.log(contadorPerguntas,contadorAcertos)
     finalizarQuizz();
 }
 
