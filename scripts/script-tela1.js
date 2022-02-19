@@ -98,7 +98,7 @@ function carregarLayoutTela1(){
    
     if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
         controleHaQuizzdoUsuario = false;
-        containerTela1.innerHTML=`
+        containerTela1.innerHTML = `
 
             <section class="sem-quizzes-do-usuario">
                 <p>Você não criou nenhum quizz ainda :(</p>
@@ -117,7 +117,7 @@ function carregarLayoutTela1(){
 
     }else {
         controleHaQuizzdoUsuario = true;
-        containerTela1.innerHTML=`
+        containerTela1.innerHTML  = `
             <section class="lista-de-quizzes quizzes-do-usuario data-identifier="user-quizzes"">
                 <h3> Seus Quizzes
                     <button class="criar-quizz " onclick="chamarTela3()" data-identifier="create-quizz">

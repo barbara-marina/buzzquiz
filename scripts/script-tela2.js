@@ -1,4 +1,4 @@
-let ID_DO_QUIZZ = 1;
+let ID_DO_QUIZZ = 5134;
 let contadorPerguntas = 0;
 let contadorAcertos = 0;
 let numeroPerguntas = null;
@@ -113,10 +113,3 @@ function finalizarQuizz(){
     }
 
 }
-    
-
-
-
-
-
-
