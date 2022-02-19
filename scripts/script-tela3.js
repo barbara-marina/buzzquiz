@@ -222,29 +222,107 @@ function validarNiveis() {
         console.log(dadosQuizz);
     }
 }
+//testes
+
+dadosQuizz = {
+	title: "Título do quizz",
+	image: "https://http.cat/411.jpg",
+	questions: [
+		{
+			title: "Título da pergunta 1",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		},
+		{
+			title: "Título da pergunta 2",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		},
+		{
+			title: "Título da pergunta 3",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		}
+	],
+	levels: [
+		{
+			title: "Título do nível 1",
+			image: "https://http.cat/411.jpg",
+			text: "Descrição do nível 1",
+			minValue: 0
+		},
+		{
+			title: "Título do nível 2",
+			image: "https://http.cat/412.jpg",
+			text: "Descrição do nível 2",
+			minValue: 50
+		}
+	]
+};
+if (localStorage.getItem("quizzesUsuario") === null) {
+    let quizzesUsuarios = [];
+    let quizzesUsuariosSerializados = JSON.stringify(quizzesUsuarios);
+    localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializados);
+    console.log(localStorage.getItem("quizzesUsuario"));
+}
+
+enviarDadosQuizz();
 
 function enviarDadosQuizz(){
     let promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", dadosQuizz);
     promessa.then(criarQuizzSucesso);
-    promessa.catch(erroTelaTres);
-
 }
 
 function criarQuizzSucesso(resposta) {
-    alert("foooi");
-    console.log(resposta.data);
+    let quizzesUsuario = localStorage.getItem("quizzesUsuario");
+    let quizzesUsuariosDeserializados = JSON.parse(quizzesUsuario);
+    quizzesUsuariosDeserializados.push(resposta.data);
+    let quizzesUsuariosSerializadosAtualizado = JSON.stringify(quizzesUsuariosDeserializados);
+    localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializadosAtualizado);
+
+    console.log(localStorage.getItem("quizzesUsuario"));
+
 
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
         <section class="sucesso-quizz">
-            <h3>O quão Potterhead é você?</h3>
+            <img src="${resposta.data.image}" alt="${resposta.data.title}">
+            <h3>${resposta.data.title}</h3>
         </section>
-        <button>Acessar Quizz</button>
-        <p>Voltar pra home</p>
+        <button onclick="solicitarQuizz(${resposta.data.id})">Acessar Quizz</button>
+        <p onclick="enviarDadosQuizz()">Voltar pra home</p>
     `;
-}
-
-function erroTelaTres(resposta) {
-    alert("não foi");
-    console.log(resposta, resposta.status);
 }
