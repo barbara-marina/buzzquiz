@@ -4,6 +4,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 width:100%;
+margin-bottom:100px;
 
 }
 
@@ -60,6 +61,7 @@ justify-content: center;
 text-align: center;
 Width: 340px;
 Height: 89px;
+word-break:break-all;
 }
 
 .container-tela2 .alternativas{
@@ -70,7 +72,7 @@ height: 300px;
 display: grid;
 column-gap: 10px;
 grid-template-columns: auto auto;
-
+word-break:break-all;
 }
 
 .container-tela2 .alternativas p{
@@ -80,6 +82,7 @@ font-style: normal;
 font-weight: bold;
 font-size: 13px;
 line-height: 15px;
+word-break:break-all;
 }
 
 .true{
@@ -115,11 +118,6 @@ width: 163px;
 height: 113px;
 }
 
-.container-tela2 .alternativa-esquerda img, .container-tela2 .alternativa-direita img{
-width: 163px;
-height: 113px;
-}
-
 .container-tela2 .bloco-finalizacao {
     background-color: #fff;
     display: flex;
@@ -128,12 +126,14 @@ height: 113px;
     align-items: center;
     width: 375px;
     height: 500px;
+    margin-top:70px;
 }
   
 .container-tela2 .percentual-acerto {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: #ec362d;
     width: 340px;
     height: 99px;
@@ -157,8 +157,11 @@ height: 113px;
     font-size: 17px;
     line-height: 20px;
     display: flex;
+    flex-wrap:wrap;
+    text-align: center;
     align-items: center;
     color: #484848;
+    word-break:break-all;
 }
   
 .container-tela2  .botao-reiniciar {
@@ -166,6 +169,8 @@ height: 113px;
     border: none;
     width: 220.32px;
     height: 44px;
+    width: 260.38px;
+    height: 52px;
     background: #ec362d;
     border-radius: 15px;
     font-size: 18px;
@@ -200,9 +205,14 @@ height: 113px;
     Width: 688px;
     height: 454px;
     column-gap: 25px;
+    
     }
 
-    .imagem-pergunta{
+    .container-tela2 span{
+    font-size: 20px;
+    }
+
+    .container-tela2 .imagem-pergunta{
     width: 329.91px;
     height: 175.2px;
     }
@@ -212,16 +222,42 @@ height: 113px;
     justify-content: center;
     }
 
-    .container-tela2 .alternativa-direita,.container-tela2 .alternativa-esquerda{
-     width: 329.91px;
-     grid-gap: 20px;
+    .container-tela2 .bloco-finalizacao {
+        width: 759px;
+        height: 430px;
     }
 
-    .container-tela2 .alternativa-esquerda img , .container-tela2 .alternativa-direita img{
-    width: 329.91px;
-    height: 175.2px;
+    .container-tela2 .percentual-acerto {
+        width: 727px;
+        height: 99px;
+        font-size: 23px;
+        line-height: 27px;
     }
 
+    .container-tela2 .bloco-finalizacao .divisao{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+       
+    }
+
+    .container-tela2 .imagem-finalizacao {
+        width: 364px;
+        height: 273px;
+        margin-right: 15px;
+    }
+
+    .container-tela2  .botao-reiniciar {
+        width: 260.38px;
+        height: 52px;
+        font-size: 21px;
+        line-height: 25px;
+        color: #fff5f4;
+    }
+
+    .container-tela2 .voltar-home {
+        font-size: 21px;
+    }
 
 }
 

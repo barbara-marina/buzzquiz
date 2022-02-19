@@ -1,4 +1,4 @@
-let ID_DO_QUIZZ = 5134;
+// let ID_DO_QUIZZ = 1;
 let contadorPerguntas = 0;
 let contadorAcertos = 0;
 let numeroPerguntas = null;
@@ -7,7 +7,7 @@ let niveis = [];
 let numeroNiveis = null;
 
 function solicitarQuizz(idQuizzSelecionado){
-    //ID_DO_QUIZZ = idQuizzSelecionado;
+    ID_DO_QUIZZ = idQuizzSelecionado;
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
     promisse.then(carregarQuizSelecionado);
@@ -16,10 +16,8 @@ function solicitarQuizz(idQuizzSelecionado){
 
 function carregarQuizSelecionado(response){
     esconderTela1();
+    esconderTela3();
 
-    // console.log(response?.data.questions);
-    // console.log(response?.data.questions[0].answers);
-    
     let perguntas = response?.data.questions;
     numeroPerguntas = perguntas?.length;
 
@@ -36,17 +34,19 @@ function carregarQuizSelecionado(response){
       
         document.querySelector(".container-tela2").innerHTML += ` 
 
-        <div class="bloco-perguntas">
-            <div class="pergunta">${perguntas[i]?.title}</div>
+        <div class="bloco-perguntas ">
+            <div class="pergunta titulo${i}">${perguntas[i]?.title}</div>
             <div class="alternativas">
             ${carregarRespostas(perguntas[i]?.answers, i)}
             </div>
         </div> 
-        ` 
+        `
+        let pergunta = document.querySelector(`.titulo${i}`);
+        pergunta.style.backgroundColor = `${perguntas[i]?.color}`   
     }
 
 }
-// solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+//  solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
 
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -63,7 +63,7 @@ function carregarRespostas(answers, indexPergunta){
     for (let i=0; i<arrayRespostas.length; i++){
         respostas  +=`
         <div>
-            <img onclick="verificaResposta(this, ${i},${indexPergunta})" class="imagem-pergunta" src="${answers[i].image}" >
+            <img onclick="verificaResposta(this, ${i},${indexPergunta})" class="imagem-pergunta" alt="${answers[i].text}" src="${answers[i].image}" >
             <p><span class="${answers[i].isCorrectAnswer} esconder-resposta" id="${indexPergunta}-${i}-${answers[i].isCorrectAnswer}">${answers[i].text}</span></p>
         </div>
         `
@@ -74,43 +74,40 @@ function carregarRespostas(answers, indexPergunta){
 
 function verificaResposta(cartaSelecionada, indiceResposta, indicePergunta){
     let array = cartaSelecionada.parentNode.parentNode.children;
-    // console.log("antes da função",cartaSelecionada.parentNode.parentNode.children);
     cartaSelecionada.parentNode.parentNode.children[indiceResposta].classList.add("selecionada")
     contadorPerguntas++;
   
     
     
     for( let i=0; i<array.length; i++){
-
-        // console.log("entrei no for", array[i])
-       
-        
         array[i].children[1].children[0].classList.remove("esconder-resposta")
-
         if(array[i].classList.contains("selecionada") == false){
             array[i].classList.add("opacidade") 
             
         }
-       
     }
 
     contarPontos(array[indiceResposta].children[1].children[0]);
-    // console.log(contadorPerguntas,contadorAcertos)
-    
     finalizarQuizz();
-    
-    // scrollProxima()
+   
+    let qtdPerguntas = document.querySelectorAll(".pergunta").length
+
+    setTimeout(() => {if (contadorPerguntas<qtdPerguntas){
+        console.log("entrei no for");
+        document.querySelector(`.titulo${contadorPerguntas}`).scrollIntoView({behavior: 'smooth', top:'300'})
+    }
+    },2000)
+
+
 }
 
 function contarPontos(spanSelecionado){
-
     if (spanSelecionado.classList.contains("true")){
         contadorAcertos++
     }
 }
 
 function finalizarQuizz(){
- 
     if(contadorPerguntas == numeroPerguntas){
         let acerto = contadorAcertos/contadorPerguntas
         acertoPercentual = parseInt(acerto*100);
@@ -118,31 +115,43 @@ function finalizarQuizz(){
             for (let i=numeroNiveis-1; i>-1; i--){
                 if(acertoPercentual>= niveis[i].minValue){
                     let conteudo = document.querySelector(".container-tela2");
-                    conteudo.innerHTML=`
+                    conteudo.innerHTML+=`
                     <div class="bloco-finalizacao">
                         <div class="percentual-acerto">${acertoPercentual}% de acerto: ${niveis[i]?.title}</div>
-                        <img
-                            class="imagem-finalizacao"
-                            src="src="${niveis[i]?.image}"
-                        />
-                        <div class="texto-finalizacao">
-                        ${niveis[i]?.text}
-                        </div>
+                        <div class="divisao">
+                            <img class="imagem-finalizacao"  src="${niveis[i]?.image}"/>
+                            <div class="texto-finalizacao">
+                            ${niveis[i]?.text}
+                            </div>
+                        </div>    
                     </div>
-                    <button class="botao-reiniciar" onclick="re">
+                    <button class="botao-reiniciar" onclick="reiniciarQuizz()">
                         Reiniciar Quizz
                     </button>
-                    <p class="voltar-home">Voltar pra home</p>
+                    <p class="voltar-home" onclick="esconderTela2();chamarTela1()">Voltar pra home</p>
                   `
                  return 
                 }
         }},500)
+        setTimeout(()=>{ document.querySelector(".bloco-finalizacao").scrollIntoView({behavior: 'smooth', top:'300'})
+
+        },2000)
     }
 }
 
 // onclick="esconderTela2();chamarTela1()"
 
+function reiniciarQuizz(){
+    let conteudo = document.querySelector(".container-tela2")
+    conteudo.innerHTML="";
+    contadorAcertos=0;
+    contadorPerguntas=0;
+    solicitarQuizz()
+    finalizarQuizz()
+    let banner = document.querySelector(".banner")
+    banner.scrollIntoView({behavior: 'smooth'})
 
+}
 
 // function scrollProxima() {
 
