@@ -49,11 +49,11 @@ background-color: #434CA0;
 color: #FFFFFF;
 font-style: normal;
 font-weight: bold;
-font-size: 19px;
 line-height: 22px; 
 display: flex;
 align-items: center;
 justify-content: center;
+text-align: center;
 Width: 340px;
 Height: 89px;
 }
@@ -63,10 +63,10 @@ background-color: #FFFFFF;
 margin-top: 13px;
 Width: 340px;
 height: 300px;
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: space-between;
+display: grid;
+column-gap: 10px;
+grid-template-columns: auto auto;
+
 }
 
 .container-tela2 .alternativas p{
@@ -116,8 +116,67 @@ width: 163px;
 height: 113px;
 }
 
-
-
+.container-tela2 .bloco-finalizacao {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 375px;
+    height: 500px;
+}
+  
+.container-tela2 .percentual-acerto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ec362d;
+    width: 340px;
+    height: 99px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 22px;
+}
+  
+.container-tela2 .imagem-finalizacao {
+    width: 340px;
+    height: 255px;
+}
+  
+.container-tela2  .texto-finalizacao {
+    display: flex;
+    width: 340px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #484848;
+}
+  
+.container-tela2  .botao-reiniciar {
+    margin-top: 20px;
+    border: none;
+    width: 220.32px;
+    height: 44px;
+    background: #ec362d;
+    border-radius: 15px;
+    font-size: 18px;
+    line-height: 21px;
+    line-height: 21px;
+    color: #fff5f4;
+}
+  
+.container-tela2 .voltar-home {
+    margin-top: 16px;
+    color: #818181;
+    font-size: 18px;
+    line-height: 21px;
+}
+  
 
 
 @media (min-width: 1100px) {
@@ -136,11 +195,17 @@ height: 113px;
     margin-top: 13px;
     Width: 688px;
     height: 454px;
+    column-gap: 25px;
     }
 
     .imagem-pergunta{
     width: 329.91px;
     height: 175.2px;
+    }
+
+    .container-tela2 .pergunta{
+    font-size: 23px;
+    justify-content: center;
     }
 
     .container-tela2 .alternativa-direita,.container-tela2 .alternativa-esquerda{
