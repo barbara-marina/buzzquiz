@@ -7,6 +7,10 @@ width:100%;
 
 }
 
+div.container-tela2.escondido {
+    display: none;
+}
+
 
 
 .container-tela2 .banner{

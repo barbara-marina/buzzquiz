@@ -3,10 +3,10 @@ function chamarTela1(){
     containerTela1.classList.remove("escondido");
     carregarLayoutTela1();
 }
-function chamarTela2(idQuizz,htmlQuizz){
+function chamarTela2(idQuizz){
     let containerTela1 = document.querySelector(".container-tela2");
     containerTela1.classList.remove("escondido");
-    solicitarQuizz(); //idQuizz 
+    solicitarQuizz(idQuizz); 
 }
 function chamarTela3(){
     let containerTela1 = document.querySelector(".container-tela3");

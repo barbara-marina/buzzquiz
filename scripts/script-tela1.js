@@ -26,7 +26,7 @@ function inserirQuizzesNaTela(lista){
                 if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                 }else{
                     containerQuizzes.innerHTML+=`
-                    <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card">
+                    <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card">
                         <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
                         <div class="sombra"></div>   
                         <p>${listaDeQuizzes[i].title}</p>              
@@ -39,7 +39,7 @@ function inserirQuizzesNaTela(lista){
     }else{
         for(let i=0; i<listaDeQuizzes.length; i++){
             containerQuizzes.innerHTML+=`
-                    <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card">
+                    <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card">
                         <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
                         <div class="sombra"></div>   
                         <p>${listaDeQuizzes[i].title}</p>              
@@ -61,7 +61,7 @@ function inserirQuizzesDoUsuarioNaTela(lista){
                 
                 if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                     containerQuizzes.innerHTML+=`
-                        <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card"> 
+                        <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card"> 
                             <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
                             <div class="sombra"></div>   
                             <p>${listaDeQuizzes[i].title}</p>              
@@ -143,4 +143,4 @@ function carregarLayoutTela1(){
 //=====================Funções executadas ao iniciar o programa========================
 
 verificarQuizzesDoUsuarioLocalStorage();
-//carregarLayoutTela1();
+carregarLayoutTela1();
