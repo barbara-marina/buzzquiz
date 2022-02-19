@@ -1,3 +1,7 @@
+div.container-tela3.escondido{ 
+    display: none;
+}
+
 .container-tela3 {
     width: 100vw;
 

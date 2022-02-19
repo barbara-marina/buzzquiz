@@ -292,14 +292,9 @@ dadosQuizz = {
 		}
 	]
 };
-if (localStorage.getItem("quizzesUsuario") === null) {
-    let quizzesUsuarios = [];
-    let quizzesUsuariosSerializados = JSON.stringify(quizzesUsuarios);
-    localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializados);
-    console.log(localStorage.getItem("quizzesUsuario"));
-}
 
 function enviarDadosQuizz(){
+    esconderTela1();
     let promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", dadosQuizz);
     promessa.then(criarQuizzSucesso);
 }
@@ -311,8 +306,7 @@ function criarQuizzSucesso(resposta) {
     let quizzesUsuariosSerializadosAtualizado = JSON.stringify(quizzesUsuariosDeserializados);
     localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializadosAtualizado);
 
-    console.log(localStorage.getItem("quizzesUsuario"));
-
+    console.log(JSON.parse(localStorage.getItem("quizzesUsuario")));
 
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
@@ -320,7 +314,7 @@ function criarQuizzSucesso(resposta) {
             <img src="${resposta.data.image}" alt="${resposta.data.title}">
             <h3>${resposta.data.title}</h3>
         </section>
-        <button onclick="solicitarQuizz(${resposta.data.id})">Acessar Quizz</button>
-        <p onclick="enviarDadosQuizz()">Voltar pra home</p>
+        <button onclick="chamarTela3(${resposta.data.id})">Acessar Quizz</button>
+        <p onclick="chamarTela1()">Voltar pra home</p>
     `;
 }
