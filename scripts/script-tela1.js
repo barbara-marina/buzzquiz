@@ -110,7 +110,7 @@ function carregarLayoutTela1(){
             </section>
         `;
 
-        solicitarTodosOsQuizzes()
+        solicitarTodosOsQuizzes();
 
     }else {
         controleHaQuizzdoUsuario = true;
