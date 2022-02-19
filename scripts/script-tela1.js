@@ -1,6 +1,7 @@
 const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-let listaIdQuizzesDoUsuario = [1,2,3,4];
+let listaIdQuizzesDoUsuario = [5214,2];
 let controleHaQuizzdoUsuario = true;
+
 
 function esconderTela1(){
     let containerTela1 = document.querySelector(".container-tela1");
@@ -30,17 +31,21 @@ function inserirQuizzesDoUsuarioNaTela(lista){
     let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
 
     containerQuizzes.innerHTML="";
-
+ 
     for(let i=0; i<listaDeQuizzes.length; i++){
-        containerQuizzes.innerHTML+=`
-            <article onclick="solicitarQuizz(this)">
-                <img src="${listaDeQuizzes[i].image}">
-                <div class="sombra"></div>   
-                <p>${listaDeQuizzes[i].title}</p>              
-            </article>
-        `;
+        for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
+            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
+                containerQuizzes.innerHTML+=`
+                    <article onclick="solicitarQuizz(this)" onclick="teste(this)"> 
+                        <img src="${listaDeQuizzes[i].image}">
+                        <div class="sombra"></div>   
+                        <p>${listaDeQuizzes[i].title}</p>              
+                    </article>
+                `;
+            }
+    
+        }
     }
-
 }
 
 function solicitarTodosOsQuizzes(){
@@ -113,7 +118,7 @@ function chamarTela1(){
 
 //=====================Funções executadas ao iniciar o programa========================
 
-//carregarLayoutTela1();
+carregarLayoutTela1();
 
 /*
 <div class="container-tela1">
