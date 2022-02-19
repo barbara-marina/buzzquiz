@@ -1,5 +1,5 @@
 const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-let listaIdQuizzesDoUsuario = [5215,2];
+let listaIdQuizzesDoUsuario = [5220,2];
 let controleHaQuizzdoUsuario = true;
 
 
@@ -19,7 +19,7 @@ function inserirQuizzesNaTela(lista){
             if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
             }else{
                 containerQuizzes.innerHTML+=`
-                <article onclick="solicitarQuizz(this)">
+                <article onclick="solicitarQuizz(this)" data-identifier="quizz-card">
                     <img src="${listaDeQuizzes[i].image}">
                     <div class="sombra"></div>   
                     <p>${listaDeQuizzes[i].title}</p>              
@@ -41,7 +41,7 @@ function inserirQuizzesDoUsuarioNaTela(lista){
         for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
             if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                 containerQuizzes.innerHTML+=`
-                    <article onclick="solicitarQuizz(this)"> 
+                    <article onclick="solicitarQuizz(this)" data-identifier="quizz-card"> 
                         <img src="${listaDeQuizzes[i].image}">
                         <div class="sombra"></div>   
                         <p>${listaDeQuizzes[i].title}</p>              
@@ -78,12 +78,12 @@ function carregarLayoutTela1(){
 
             <section class="sem-quizzes-do-usuario">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button onclick="criarQuizzInfoBasicas()">Criar Quizz</button>
+                <button onclick="criarQuizzInfoBasicas()" data-identifier="create-quizz">Criar Quizz</button>
             </section>
 
-            <section class="lista-de-quizzes quizzes-do-usuario escondido"></section>
+            <section class="lista-de-quizzes quizzes-do-usuario" escondido data-identifier="user-quizzes"></section>
 
-            <section class="lista-de-quizzes todos-os-quizzes">
+            <section class="lista-de-quizzes todos-os-quizzes" data-identifier="general-quizzes">
                 <h3>Todos os Quizzes</h3>
                 <div class="container-quizzes"></div>
             </section>
@@ -93,16 +93,16 @@ function carregarLayoutTela1(){
 
     }else {
         containerTela1.innerHTML=`
-            <section class="lista-de-quizzes quizzes-do-usuario ">
+            <section class="lista-de-quizzes quizzes-do-usuario data-identifier="user-quizzes"">
                 <h3> Seus Quizzes
-                    <button class="criar-quizz " onclick="criarQuizzInfoBasicas()">
+                    <button class="criar-quizz " onclick="criarQuizzInfoBasicas()" data-identifier="create-quizz">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                 </h3>
                 <div class="container-quizzes"></div>
             </section>
 
-            <section class="lista-de-quizzes todos-os-quizzes">
+            <section class="lista-de-quizzes todos-os-quizzes" data-identifier="general-quizzes">
                 <h3>Todos os Quizzes</h3>
                 <div class="container-quizzes"></div>
             </section>
@@ -124,42 +124,3 @@ function chamarTela1(){
 //=====================Funções executadas ao iniciar o programa========================
 
 carregarLayoutTela1();
-
-/*
-<div class="container-tela1">
-
-    <div class="capsula">
-    
-        <section class="sem-quizzes-do-usuario">
-            <p>Você não criou nenhum quizz ainda :(</p>
-            <button>Criar Quizz</button>
-        </section>
-
-        <section class="lista-de-quizzes quizzes-do-usuario escondido">
-            <h3>Seus Quizzes
-                <button class="criar-quizz escondido">
-                    <ion-icon name="add-circle"></ion-icon>
-                </button>
-            </h3>
-
-            <div class="container-quizzes">
-                <article>
-                    <img src="" alt="Imagem do quizz">
-                    <div class="sombra"></div>   
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-                </article>
-            </div>
-            
-        </section>
-        <section class="lista-de-quizzes todos-os-quizzes">
-            <h3>Todos os Quizzes</h3>
-            <article>
-                <img src="/assets/Imagem-praia-teste.jpg">
-                <div class="sombra"></div>   
-                <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>              
-            </article>
-    
-        </section>
-    </div>
-</div>
-*/

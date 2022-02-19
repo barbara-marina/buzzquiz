@@ -10,7 +10,6 @@ function solicitarQuizz(quizzSelecionado){
 
     promisse.then(carregarQuizSelecionado);
     
-    carregarQuizSelecionado();
 }
 
 
