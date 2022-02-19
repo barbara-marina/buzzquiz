@@ -1,5 +1,5 @@
 const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-let listaIdQuizzesDoUsuario = [5214,2];
+let listaIdQuizzesDoUsuario = [5215,2];
 let controleHaQuizzdoUsuario = true;
 
 
@@ -15,15 +15,20 @@ function inserirQuizzesNaTela(lista){
     containerQuizzes.innerHTML="";
 
     for(let i=0; i<listaDeQuizzes.length; i++){
-        containerQuizzes.innerHTML+=`
-            <article onclick="solicitarQuizz(this)">
-                <img src="${listaDeQuizzes[i].image}">
-                <div class="sombra"></div>   
-                <p>${listaDeQuizzes[i].title}</p>              
-            </article>
-        `;
+        for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
+            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){ console.log("pulei um quizz do usuário");
+            }else{
+                containerQuizzes.innerHTML+=`
+                <article onclick="solicitarQuizz(this)">
+                    <img src="${listaDeQuizzes[i].image}">
+                    <div class="sombra"></div>   
+                    <p>${listaDeQuizzes[i].title}</p>              
+                </article>
+            `;
+            }
+        }
+        
     }
-
 }
 
 function inserirQuizzesDoUsuarioNaTela(lista){
@@ -36,7 +41,7 @@ function inserirQuizzesDoUsuarioNaTela(lista){
         for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
             if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                 containerQuizzes.innerHTML+=`
-                    <article onclick="solicitarQuizz(this)" onclick="teste(this)"> 
+                    <article onclick="solicitarQuizz(this)"> 
                         <img src="${listaDeQuizzes[i].image}">
                         <div class="sombra"></div>   
                         <p>${listaDeQuizzes[i].title}</p>              
