@@ -1,4 +1,4 @@
-// let ID_DO_QUIZZ = 1;
+let ID_DO_QUIZZ = 0;
 let contadorPerguntas = 0;
 let contadorAcertos = 0;
 let numeroPerguntas = null;
@@ -142,11 +142,12 @@ function finalizarQuizz(){
 // onclick="esconderTela2();chamarTela1()"
 
 function reiniciarQuizz(){
+
     let conteudo = document.querySelector(".container-tela2")
     conteudo.innerHTML="";
     contadorAcertos=0;
     contadorPerguntas=0;
-    solicitarQuizz()
+    solicitarQuizz(ID_DO_QUIZZ)
     finalizarQuizz()
     let banner = document.querySelector(".banner")
     banner.scrollIntoView({behavior: 'smooth'})
