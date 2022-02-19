@@ -8,8 +8,6 @@ function verificarQuizzesDoUsuarioLocalStorage(){
         let quizzesUsuarios = [];
         let quizzesUsuariosSerializados = JSON.stringify(quizzesUsuarios);
         localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializados);
-        console.log(localStorage.getItem("quizzesUsuario"));
-        console.log("deu certo");
     }
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
@@ -51,6 +49,8 @@ function inserirQuizzesNaTela(lista){
 }
 
 function inserirQuizzesDoUsuarioNaTela(lista){
+    console.log("entrei na função ")
+    console.log(`arrayListaIdQuizzesDoUsuario = ${arrayListaIdQuizzesDoUsuario[0]}`)
     let listaDeQuizzes = lista.data;
     let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
 
@@ -58,7 +58,6 @@ function inserirQuizzesDoUsuarioNaTela(lista){
     
         for(let i=0; i<listaDeQuizzes.length; i++){
             for(let j=0; j< arrayListaIdQuizzesDoUsuario.length; j++){
-                
                 if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                     containerQuizzes.innerHTML+=`
                         <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card"> 
@@ -136,9 +135,7 @@ function carregarLayoutTela1(){
 
         solicitarQuizzesDoUsuario();
         solicitarTodosOsQuizzes();
-
     }
-    
 }
 
 //=====================Funções executadas ao iniciar o programa========================
