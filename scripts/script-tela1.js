@@ -1,11 +1,18 @@
 const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-let listaIdQuizzesDoUsuario = [5220,2];
-let controleHaQuizzdoUsuario = true;
+let listaIdQuizzesDoUsuario;
+let arrayListaIdQuizzesDoUsuario;
+let controleHaQuizzdoUsuario;
 
-
-function esconderTela1(){
-    let containerTela1 = document.querySelector(".container-tela1");
-    containerTela1.classList.add("escondido");
+function verificarQuizzesDoUsuarioLocalStorage(){
+    if(localStorage.getItem("quizzesUsuario") === null){
+        let quizzesUsuarios = [];
+        let quizzesUsuariosSerializados = JSON.stringify(quizzesUsuarios);
+        localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializados);
+        console.log(localStorage.getItem("quizzesUsuario"));
+        console.log("deu certo");
+    }
+    listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
+    arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
 }
 
 function inserirQuizzesNaTela(lista){
@@ -13,21 +20,33 @@ function inserirQuizzesNaTela(lista){
     let containerQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes div.container-quizzes");
 
     containerQuizzes.innerHTML="";
-
-    for(let i=0; i<listaDeQuizzes.length; i++){
-        for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
-            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
-            }else{
-                containerQuizzes.innerHTML+=`
-                <article onclick="solicitarQuizz(this)" data-identifier="quizz-card">
-                    <img src="${listaDeQuizzes[i].image}">
-                    <div class="sombra"></div>   
-                    <p>${listaDeQuizzes[i].title}</p>              
-                </article>
-            `;
+    if(controleHaQuizzdoUsuario === true ){
+        for(let i=0; i<listaDeQuizzes.length; i++){
+            for(let j=0; j< arrayListaIdQuizzesDoUsuario.length; j++){
+                if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
+                }else{
+                    containerQuizzes.innerHTML+=`
+                    <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card">
+                        <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
+                        <div class="sombra"></div>   
+                        <p>${listaDeQuizzes[i].title}</p>              
+                    </article>
+                `;
+                }
             }
+            
         }
-        
+    }else{
+        for(let i=0; i<listaDeQuizzes.length; i++){
+            containerQuizzes.innerHTML+=`
+                    <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card">
+                        <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
+                        <div class="sombra"></div>   
+                        <p>${listaDeQuizzes[i].title}</p>              
+                    </article>
+                `;
+        }
+
     }
 }
 
@@ -36,21 +55,22 @@ function inserirQuizzesDoUsuarioNaTela(lista){
     let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
 
     containerQuizzes.innerHTML="";
- 
-    for(let i=0; i<listaDeQuizzes.length; i++){
-        for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
-            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
-                containerQuizzes.innerHTML+=`
-                    <article onclick="solicitarQuizz(this)" data-identifier="quizz-card"> 
-                        <img src="${listaDeQuizzes[i].image}">
-                        <div class="sombra"></div>   
-                        <p>${listaDeQuizzes[i].title}</p>              
-                    </article>
-                `;
-            }
     
-        }
-    }
+        for(let i=0; i<listaDeQuizzes.length; i++){
+            for(let j=0; j< arrayListaIdQuizzesDoUsuario.length; j++){
+                
+                if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
+                    containerQuizzes.innerHTML+=`
+                        <article onclick="chamarTela2(${listaDeQuizzes[i].id},this)" data-identifier="quizz-card"> 
+                            <img src="${listaDeQuizzes[i].image}" alt="miniatura do quizz">
+                            <div class="sombra"></div>   
+                            <p>${listaDeQuizzes[i].title}</p>              
+                        </article>
+                    `;
+                }
+        
+            }
+        }    
 }
 
 function solicitarTodosOsQuizzes(){
@@ -73,12 +93,16 @@ function solicitarQuizzesDoUsuario(){
 
 function carregarLayoutTela1(){
     let containerTela1 = document.querySelector(".container-tela1 div.capsula");
-    if (controleHaQuizzdoUsuario === false){
+    listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
+    arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
+   
+    if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
+        controleHaQuizzdoUsuario = false;
         containerTela1.innerHTML=`
 
             <section class="sem-quizzes-do-usuario">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button onclick="criarQuizzInfoBasicas()" data-identifier="create-quizz">Criar Quizz</button>
+                <button onclick="chamarTela3()" data-identifier="create-quizz">Criar Quizz</button>
             </section>
 
             <section class="lista-de-quizzes quizzes-do-usuario" escondido data-identifier="user-quizzes"></section>
@@ -92,10 +116,11 @@ function carregarLayoutTela1(){
         solicitarTodosOsQuizzes()
 
     }else {
+        controleHaQuizzdoUsuario = true;
         containerTela1.innerHTML=`
             <section class="lista-de-quizzes quizzes-do-usuario data-identifier="user-quizzes"">
                 <h3> Seus Quizzes
-                    <button class="criar-quizz " onclick="criarQuizzInfoBasicas()" data-identifier="create-quizz">
+                    <button class="criar-quizz " onclick="chamarTela3()" data-identifier="create-quizz">
                         <ion-icon name="add-circle"></ion-icon>
                     </button>
                 </h3>
@@ -115,12 +140,7 @@ function carregarLayoutTela1(){
     
 }
 
-function chamarTela1(){
-    let containerTela1 = document.querySelector(".container-tela1");
-    containerTela1.classList.remove("escondido");
-    carregarLayoutTela1();
-}
-
 //=====================Funções executadas ao iniciar o programa========================
 
-carregarLayoutTela1();
+verificarQuizzesDoUsuarioLocalStorage();
+//carregarLayoutTela1();

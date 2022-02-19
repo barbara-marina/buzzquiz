@@ -4,8 +4,7 @@ let contadorAcertos = 0;
 let numeroPerguntas = null;
 
 function solicitarQuizz(quizzSelecionado){
-    /*O parâmetro quizzSelecionado recebe o "this" do quizz que foi escolhido. Se for mais útil para vc, posso filtar o id;
-    por enquanto essa informação não está sendo usada aqui no seu código, mas acredito que possa ser útil*/
+    ID_DO_QUIZZ = quizzSelecionado;
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
     promisse.then(carregarQuizSelecionado);
@@ -43,7 +42,7 @@ function carregarQuizSelecionado(response){
 
 }
 
- solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+// solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
 
 function comparador() { 
 	return Math.random() - 0.5; 
