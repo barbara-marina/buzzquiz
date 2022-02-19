@@ -4,7 +4,7 @@ let contadorAcertos = 0;
 let numeroPerguntas = null;
 
 function solicitarQuizz(quizzSelecionado){
-    ID_DO_QUIZZ = quizzSelecionado;
+    //ID_DO_QUIZZ = quizzSelecionado;
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
     promisse.then(carregarQuizSelecionado);
