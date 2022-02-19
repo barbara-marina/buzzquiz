@@ -1,4 +1,4 @@
-let ID_DO_QUIZZ = 1;
+let ID_DO_QUIZZ = 5134;
 let contadorPerguntas = 0;
 let contadorAcertos = 0;
 let numeroPerguntas = null;
@@ -6,14 +6,12 @@ let acertoPercentual = 0;
 let niveis = [];
 let numeroNiveis = null;
 
-function solicitarQuizz(quizzSelecionado){
-    /*O parâmetro quizzSelecionado recebe o "this" do quizz que foi escolhido. Se for mais útil para vc, posso filtar o id;
-    por enquanto essa informação não está sendo usada aqui no seu código, mas acredito que possa ser útil*/
+function solicitarQuizz(idQuizzSelecionado){
+    //ID_DO_QUIZZ = idQuizzSelecionado;
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
     promisse.then(carregarQuizSelecionado);
-
-    carregarQuizSelecionado();
+    
 }
 
 function carregarQuizSelecionado(response){
