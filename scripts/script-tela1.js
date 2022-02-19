@@ -16,7 +16,7 @@ function inserirQuizzesNaTela(lista){
 
     for(let i=0; i<listaDeQuizzes.length; i++){
         for(let j=0; j< listaIdQuizzesDoUsuario.length; i++){
-            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){ console.log("pulei um quizz do usuário");
+            if(listaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
             }else{
                 containerQuizzes.innerHTML+=`
                 <article onclick="solicitarQuizz(this)">
