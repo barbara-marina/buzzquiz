@@ -299,8 +299,6 @@ if (localStorage.getItem("quizzesUsuario") === null) {
     console.log(localStorage.getItem("quizzesUsuario"));
 }
 
-enviarDadosQuizz();
-
 function enviarDadosQuizz(){
     let promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", dadosQuizz);
     promessa.then(criarQuizzSucesso);

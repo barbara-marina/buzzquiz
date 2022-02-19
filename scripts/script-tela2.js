@@ -113,10 +113,3 @@ function finalizarQuizz(){
     }
 
 }
-    
-
-
-
-
-
-
