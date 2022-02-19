@@ -62,6 +62,10 @@ div.container-tela1 section.sem-quizzes-do-usuario button {
     color: #EC362D;
 }
 
+div.container-tela1 section.sem-quizzes-do-usuario button :hover{
+    cursor: pointer;
+}
+
 div.container-tela1 section.lista-de-quizzes {
     display: flex;
     flex-direction: column;
@@ -108,6 +112,10 @@ div.container-tela1 section.lista-de-quizzes.quizzes-do-usuario h3 button.criar-
     color:#EC362D;
 }
 
+div.container-tela1 section.lista-de-quizzes.quizzes-do-usuario h3 button.criar-quizz :hover{
+    cursor: pointer;
+}
+
 div.container-tela1 section.lista-de-quizzes article {
     position: relative;
     width: 340px;
@@ -117,6 +125,10 @@ div.container-tela1 section.lista-de-quizzes article {
     margin-right: 15px;
 
     border-radius: 5px;
+}
+
+div.container-tela1 section.lista-de-quizzes article :hover {
+    cursor: pointer;
 }
 
 div.container-tela1 section.lista-de-quizzes article .sombra {

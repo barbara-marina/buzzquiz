@@ -49,8 +49,6 @@ function inserirQuizzesNaTela(lista){
 }
 
 function inserirQuizzesDoUsuarioNaTela(lista){
-    console.log("entrei na função ")
-    console.log(`arrayListaIdQuizzesDoUsuario = ${arrayListaIdQuizzesDoUsuario[0]}`)
     let listaDeQuizzes = lista.data;
     let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
 
@@ -94,7 +92,6 @@ function carregarLayoutTela1(){
     let containerTela1 = document.querySelector(".container-tela1 div.capsula");
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
-    console.log(arrayListaIdQuizzesDoUsuario);
    
     if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
         controleHaQuizzdoUsuario = false;
