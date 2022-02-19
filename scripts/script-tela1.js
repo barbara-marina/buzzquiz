@@ -8,8 +8,6 @@ function verificarQuizzesDoUsuarioLocalStorage(){
         let quizzesUsuarios = [];
         let quizzesUsuariosSerializados = JSON.stringify(quizzesUsuarios);
         localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializados);
-        console.log(localStorage.getItem("quizzesUsuario"));
-        console.log("deu certo");
     }
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
@@ -58,7 +56,6 @@ function inserirQuizzesDoUsuarioNaTela(lista){
     
         for(let i=0; i<listaDeQuizzes.length; i++){
             for(let j=0; j< arrayListaIdQuizzesDoUsuario.length; j++){
-                
                 if(arrayListaIdQuizzesDoUsuario[j]===listaDeQuizzes[i].id){
                     containerQuizzes.innerHTML+=`
                         <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card"> 
@@ -95,7 +92,6 @@ function carregarLayoutTela1(){
     let containerTela1 = document.querySelector(".container-tela1 div.capsula");
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
-    console.log(arrayListaIdQuizzesDoUsuario);
    
     if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
         controleHaQuizzdoUsuario = false;
@@ -136,9 +132,7 @@ function carregarLayoutTela1(){
 
         solicitarQuizzesDoUsuario();
         solicitarTodosOsQuizzes();
-
     }
-    
 }
 
 //=====================Funções executadas ao iniciar o programa========================
