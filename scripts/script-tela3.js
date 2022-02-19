@@ -314,7 +314,7 @@ function criarQuizzSucesso(resposta) {
             <img src="${resposta.data.image}" alt="${resposta.data.title}">
             <h3>${resposta.data.title}</h3>
         </section>
-        <button onclick="chamarTela3(${resposta.data.id})">Acessar Quizz</button>
-        <p onclick="chamarTela1()">Voltar pra home</p>
+        <button onclick="esconderTela3(); chamarTela2(${resposta.data.id})" >Acessar Quizz</button>
+        <p onclick="esconderTela3(); chamarTela1()" >Voltar pra home</p>
     `;
 }

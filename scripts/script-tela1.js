@@ -95,6 +95,7 @@ function carregarLayoutTela1(){
     let containerTela1 = document.querySelector(".container-tela1 div.capsula");
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
+    console.log(arrayListaIdQuizzesDoUsuario);
    
     if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
         controleHaQuizzdoUsuario = false;
