@@ -9,10 +9,10 @@ function chamarTela2(idQuizz){
     solicitarQuizz(idQuizz); 
 }
 function chamarTela3(){
-    
     let containerTela3 = document.querySelector(".container-tela3");
     containerTela3.classList.remove("escondido");
-    enviarDadosQuizz();
+    // enviarDadosQuizz();
+        criarQuizzInfoBasicas();
 }
 
 function esconderTela1(){
