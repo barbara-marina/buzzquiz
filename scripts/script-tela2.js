@@ -32,7 +32,7 @@ function carregarQuizSelecionado(response){
 
     let banner = document.querySelector(".banner");
     banner.style.backgroundImage = `url("${response?.data.image}")`
-    banner.scrollIntoView({behavior: 'smooth'})
+    banner.scrollIntoView({top: 100, behavior: 'smooth'})
     
     for (let i=0; i<numeroPerguntas; i++){
       
