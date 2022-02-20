@@ -300,7 +300,6 @@ function enviarDadosQuizz(){
 }
 
 function criarQuizzSucesso(resposta) {
-    console.log(resposta.data.id);
     let quizzesUsuario = localStorage.getItem("quizzesUsuario");
     let quizzesUsuariosDeserializados = JSON.parse(quizzesUsuario);
     quizzesUsuariosDeserializados.push(resposta.data.id);
