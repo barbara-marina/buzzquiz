@@ -17,6 +17,9 @@ function solicitarQuizz(idQuizzSelecionado){
 function carregarQuizSelecionado(response){
     esconderTela1();
     esconderTela3();
+    contadorAcertos=0;
+    contadorPerguntas=0;
+    
 
     let perguntas = response?.data.questions;
     numeroPerguntas = perguntas?.length;
@@ -29,6 +32,7 @@ function carregarQuizSelecionado(response){
 
     let banner = document.querySelector(".banner");
     banner.style.backgroundImage = `url("${response?.data.image}")`
+    banner.scrollIntoView({behavior: 'smooth'})
     
     for (let i=0; i<numeroPerguntas; i++){
       
@@ -93,7 +97,6 @@ function verificaResposta(cartaSelecionada, indiceResposta, indicePergunta){
     let qtdPerguntas = document.querySelectorAll(".pergunta").length
 
     setTimeout(() => {if (contadorPerguntas<qtdPerguntas){
-        console.log("entrei no for");
         document.querySelector(`.titulo${contadorPerguntas}`).scrollIntoView({behavior: 'smooth', top:'300'})
     }
     },2000)
@@ -130,16 +133,16 @@ function finalizarQuizz(){
                     </button>
                     <p class="voltar-home" onclick="esconderTela2();chamarTela1()">Voltar pra home</p>
                   `
-                 return 
+                  return 
                 }
+                
         }},500)
         setTimeout(()=>{ document.querySelector(".bloco-finalizacao").scrollIntoView({behavior: 'smooth', top:'300'})
 
         },2000)
+        
     }
 }
-
-// onclick="esconderTela2();chamarTela1()"
 
 function reiniciarQuizz(){
 
@@ -153,30 +156,3 @@ function reiniciarQuizz(){
     banner.scrollIntoView({behavior: 'smooth'})
 
 }
-
-// function scrollProxima() {
-
-//     let perguntas = document.querySelectorAll(".bloco-perguntas")
-
-//     perguntas.forEach(window.scroll(0,600)); 
-   
-//     for (let i=0; i<perguntas.length; i++){
-//         console.log("entrei no for")
-//         let posicao[i] = 600;
-//         window.scroll(0,posicao[i])
-//         posicao[i+1]= posicao[i]+600
-//         perguntas[i].scrollIntoView({ behavior: 'smooth', block: 'nearest'});
-//     }
-
-//     pergunta.scrollIntoView({ behavior: 'smooth', block: 'end'});
-
-   
-// }
-
-// setInterval(() => {scrollProxima
-    
-// }, 2000);
-
-
-
-
