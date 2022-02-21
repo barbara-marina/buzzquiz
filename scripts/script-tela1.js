@@ -28,17 +28,14 @@ function coletarIdsQuizzesDoUsuario(){
 
 function inserirQuizzesNaTela(lista){
     listaDeQuizzes = lista.data;
-    console.log(`tamanho = ${listaDeQuizzes.length}`);
     let containerQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes div.container-quizzes");
 
     containerQuizzes.innerHTML="";
     if(controleHaQuizzdoUsuario === true ){
         for(let i=0; i<listaDeQuizzes.length; i++){
-            console.log(idsQuizzesDoUsuario.includes(listaDeQuizzes[i].id));
 
             if(idsQuizzesDoUsuario.includes(listaDeQuizzes[i].id)){
-                console.log("achei um quizz do usuário");
-                console.log(listaDeQuizzes[i].id);
+                
             }else{
                 containerQuizzes.innerHTML+=`
                 <article onclick="chamarTela2(${listaDeQuizzes[i].id})" data-identifier="quizz-card">
