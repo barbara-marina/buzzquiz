@@ -1,7 +1,3 @@
-div.container-tela3.escondido{ 
-    display: none;
-}
-
 .container-tela3 {
     width: 100vw;
 
@@ -17,7 +13,7 @@ div.container-tela3.escondido{
     font-weight: 700;
     text-align: center;
 
-    padding: 106px 0 29px 0;
+    padding-bottom:  29px;
 }
 
 .container-tela3 h2 {
@@ -55,6 +51,18 @@ div.container-tela3.escondido{
     align-items: center;
 }
 
+.container-tela3 div, .container-tela3 article {
+    width: 100%;
+}
+
+.container-tela3 p.erro {
+    font-size: 16px;
+
+    color: #EC362D;
+
+    margin-top: 5px;
+}
+
 .container-tela3 input, .container-tela3 textarea {
     width: 100%;
     height: 46px;
@@ -62,10 +70,7 @@ div.container-tela3.escondido{
     border: 1px solid #D1D1D1;
     border-radius: 5px;
 
-    font-style: italic;
     font-size: 19px;
-
-    color: #bababa;
 
     display: flex;
     align-items: center;
@@ -73,7 +78,18 @@ div.container-tela3.escondido{
     padding-left: 14px;
 }
 
-.container-tela3 .cor-fundo-pergunta, .container-tela3 .url-imagem {
+.container-tela3 input::placeholder, .container-tela3 textarea::placeholder {
+    font-style: italic;
+    font-size: 19px;
+
+    color: #bababa;
+}
+
+.container-tela3 input.erro, .container-tela3 textarea.erro{
+    background: #FFE9E9;
+}
+
+.container-tela3 div {
     margin-bottom: 13px;
 }
 
@@ -170,11 +186,7 @@ div.container-tela3.escondido{
 
     margin-top: 22px ;
 }
-
 @media (min-width: 600px) {
-    .container-tela3 h1 {
-        padding-top: 140px;
-    }
 
     .container-tela3 section {
         width: 600px;
@@ -191,4 +203,8 @@ div.container-tela3.escondido{
     .container-tela3 .sucesso-quizz h3 {
         font-size: 23px;
     }    
+}
+
+div.container-tela3.escondido , .escondido{ 
+    display: none;
 }
