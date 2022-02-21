@@ -2,6 +2,56 @@ const URL_BUZZQUIZZ = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 let listaIdQuizzesDoUsuario;
 let arrayListaIdQuizzesDoUsuario;
 let controleHaQuizzdoUsuario;
+let listaDeQuizzes=[];
+
+/*#LEGENDA#
+Se "resposta" é o retorno de uma requisição para obter um quizz, então resposta.data.id (.image .title) é a forma de extrair as informações do objeto
+Se "listaDeQuizzes[x]" é um índice de um array contendo os objetos .data retornados pela requisição da lista de quizzes
+, então listaDeQuizzes[0].id (.title .image) é a forma de extrair as informações desses objetos
+
+*/
+
+// let primeiraRequisicao = axios.get(URL_BUZZQUIZZ);
+// let teste = axios.get(`${URL_BUZZQUIZZ}/6037`);
+// teste.then( (resposta) => {
+//     let objeto= {};
+//     objeto = resposta.object;
+//     console.log(`resposta = ${resposta.data.id}`);
+// }
+// );
+// teste.catch(
+//     ()=>{
+//         console.log("erro na requisição do quizz");
+//     }
+// );
+
+// primeiraRequisicao.then((lista) => {
+//     listaDeQuizzes = lista.data;
+//     console.log(`listaDeQuizzes = ${listaDeQuizzes[0].title}`); // .id .image
+//     carregarLayoutTela1();
+// }
+// );
+
+
+
+
+// function sincronizarStorageComAApi(){
+//     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
+//     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
+//     let arrayDeIds = [];
+//     for(let i=0; i<listaDeQuizzes.length; i++){
+//         arrayDeIds.push(listaDeQuizzes[i].id);
+//     }
+
+//     for(let i=0; i<arrayListaIdQuizzesDoUsuario.length; i++){
+//         let controle = arrayDeIds.indexOf(arrayListaIdQuizzesDoUsuario[i]);
+//         if (controle === (-1)){
+//             console.log("Este indice não está no array")
+//         }
+//         //se arrayListaIdQuizzesDoUsuario[i] não existir dentro de listaDeQuizzes, excluir item do arrayListaIdQuizzesDoUsuario
+        
+//     }
+// }
 
 function verificarQuizzesDoUsuarioLocalStorage(){
     if(localStorage.getItem("quizzesUsuario") === null){
@@ -11,10 +61,12 @@ function verificarQuizzesDoUsuarioLocalStorage(){
     }
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
+    console.log(`listaID = ${listaIdQuizzesDoUsuario}`);
+    console.log(`arrayListaID = ${arrayListaIdQuizzesDoUsuario}`);
 }
 
 function inserirQuizzesNaTela(lista){
-    let listaDeQuizzes = lista.data;
+    listaDeQuizzes = lista.data;
     let containerQuizzes = document.querySelector(".container-tela1 section.todos-os-quizzes div.container-quizzes");
 
     containerQuizzes.innerHTML="";
@@ -49,7 +101,7 @@ function inserirQuizzesNaTela(lista){
 }
 
 function inserirQuizzesDoUsuarioNaTela(lista){
-    let listaDeQuizzes = lista.data;
+    listaDeQuizzes = lista.data;
     let containerQuizzes = document.querySelector(".container-tela1 section.quizzes-do-usuario div.container-quizzes");
 
     containerQuizzes.innerHTML="";
@@ -92,7 +144,7 @@ function carregarLayoutTela1(){
     let containerTela1 = document.querySelector(".container-tela1 div.capsula");
     listaIdQuizzesDoUsuario = localStorage.getItem("quizzesUsuario");
     arrayListaIdQuizzesDoUsuario = JSON.parse(listaIdQuizzesDoUsuario);
-   
+       
     if (listaIdQuizzesDoUsuario === null|| arrayListaIdQuizzesDoUsuario.length === 0){
         controleHaQuizzdoUsuario = false;
         containerTela1.innerHTML = `
@@ -113,6 +165,7 @@ function carregarLayoutTela1(){
         solicitarTodosOsQuizzes();
 
     }else {
+        
         controleHaQuizzdoUsuario = true;
         containerTela1.innerHTML  = `
             <section class="lista-de-quizzes quizzes-do-usuario data-identifier="user-quizzes"">
@@ -138,4 +191,5 @@ function carregarLayoutTela1(){
 //=====================Funções executadas ao iniciar o programa========================
 
 verificarQuizzesDoUsuarioLocalStorage();
-carregarLayoutTela1();
+carregarLayoutTela1()
+
