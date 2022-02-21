@@ -5,7 +5,6 @@ align-items: center;
 justify-content: center;
 width:100%;
 margin-bottom:100px;
-
 }
 
 div.container-tela2.escondido {
@@ -33,12 +32,10 @@ overflow-x: hidden;
     display: none;
 }
 
-
 .container-tela2 .banner p{
 color: #FFFFFF;
 font-size: 19px;
 }
-
 
 .container-tela2  .bloco-perguntas{
 margin-top:24px;
@@ -88,28 +85,27 @@ line-height: 15px;
 word-break:break-all;
 }
 
-.true{
+.container-tela2 .true{
     color: green;  
 }
 
-.false{
+.container-tela2 .false{
     color: red;
 }
 
-.esconder-resposta{
+.container-tela2 .esconder-resposta{
     color: #000000;  
 }
 
-.opacidade{
+.container-tela2 .opacidade{
     opacity: 0.3;
     pointer-events: none;
 }
 
-.selecionada{
+.container-tela2 .selecionada{
     pointer-events: none; 
 }
     
-
 .container-tela2 .alternativa-esquerda , .container-tela2 .alternativa-direita {
 width: 163px;
 display: grid;
@@ -119,7 +115,6 @@ grid-gap: 12px;
 .imagem-pergunta{
 width: 163px;
 height: 113px;
-
 cursor: pointer;
 }
 
@@ -193,8 +188,6 @@ cursor: pointer;
     cursor: pointer;
 }
   
-
-
 @media (min-width: 1100px) {
 
     .container-tela2 .bloco-perguntas{
@@ -265,8 +258,4 @@ cursor: pointer;
     .container-tela2 .voltar-home {
         font-size: 21px;
     }
-
 }
-
-
-

@@ -145,3 +145,4 @@ function carregarLayoutTela1(){
 
 verificarQuizzesDoUsuarioLocalStorage();
 carregarLayoutTela1();
+

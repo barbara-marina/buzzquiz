@@ -11,7 +11,6 @@ function chamarTela2(idQuizz){
 function chamarTela3(){
     let containerTela3 = document.querySelector(".container-tela3");
     containerTela3.classList.remove("escondido");
-    // enviarDadosQuizz();
         criarQuizzInfoBasicas();
 }
 
