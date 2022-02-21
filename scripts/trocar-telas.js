@@ -13,7 +13,6 @@ function chamarTela3(){
     containerTela3.classList.remove("escondido");
         criarQuizzInfoBasicas();
 }
-chamarTela3()
 
 function esconderTela1(){
     let containerTela1 = document.querySelector(".container-tela1");

@@ -137,5 +137,5 @@ function carregarLayoutTela1(){
 
 //=====================Funções executadas ao iniciar o programa========================
 
-// verificarQuizzesDoUsuarioLocalStorage();
-// carregarLayoutTela1();
+verificarQuizzesDoUsuarioLocalStorage();
+carregarLayoutTela1();
