@@ -222,76 +222,6 @@ function validarNiveis() {
         console.log(dadosQuizz);
     }
 }
-//testes
-
-// dadosQuizz = {
-// 	title: "Título do quizz",
-// 	image: "https://http.cat/411.jpg",
-// 	questions: [
-// 		{
-// 			title: "Título da pergunta 1",
-// 			color: "#123456",
-// 			answers: [
-// 				{
-// 					text: "Texto da resposta 1",
-// 					image: "https://http.cat/411.jpg",
-// 					isCorrectAnswer: true
-// 				},
-// 				{
-// 					text: "Texto da resposta 2",
-// 					image: "https://http.cat/412.jpg",
-// 					isCorrectAnswer: false
-// 				}
-// 			]
-// 		},
-// 		{
-// 			title: "Título da pergunta 2",
-// 			color: "#123456",
-// 			answers: [
-// 				{
-// 					text: "Texto da resposta 1",
-// 					image: "https://http.cat/411.jpg",
-// 					isCorrectAnswer: true
-// 				},
-// 				{
-// 					text: "Texto da resposta 2",
-// 					image: "https://http.cat/412.jpg",
-// 					isCorrectAnswer: false
-// 				}
-// 			]
-// 		},
-// 		{
-// 			title: "Título da pergunta 3",
-// 			color: "#123456",
-// 			answers: [
-// 				{
-// 					text: "Texto da resposta 1",
-// 					image: "https://http.cat/411.jpg",
-// 					isCorrectAnswer: true
-// 				},
-// 				{
-// 					text: "Texto da resposta 2",
-// 					image: "https://http.cat/412.jpg",
-// 					isCorrectAnswer: false
-// 				}
-// 			]
-// 		}
-// 	],
-// 	levels: [
-// 		{
-// 			title: "Título do nível 1",
-// 			image: "https://http.cat/411.jpg",
-// 			text: "Descrição do nível 1",
-// 			minValue: 0
-// 		},
-// 		{
-// 			title: "Título do nível 2",
-// 			image: "https://http.cat/412.jpg",
-// 			text: "Descrição do nível 2",
-// 			minValue: 50
-// 		}
-// 	]
-// };
 
 function enviarDadosQuizz(){
     esconderTela1();
@@ -299,16 +229,16 @@ function enviarDadosQuizz(){
     promessa.then(criarQuizzSucesso);
 }
 
-function criarQuizzSucesso(resposta) {
-    console.log(resposta.data.id);
+function atulizarChaveLocalStorage(resposta) {
     let quizzesUsuario = localStorage.getItem("quizzesUsuario");
     let quizzesUsuariosDeserializados = JSON.parse(quizzesUsuario);
     quizzesUsuariosDeserializados.push(resposta.data);//.id
     let quizzesUsuariosSerializadosAtualizado = JSON.stringify(quizzesUsuariosDeserializados);
     localStorage.setItem("quizzesUsuario", quizzesUsuariosSerializadosAtualizado);
+}
 
-    console.log(JSON.parse(localStorage.getItem("quizzesUsuario")));
-
+function criarQuizzSucesso(resposta) {
+    atulizarChaveLocalStorage(resposta);
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
         <section class="sucesso-quizz">

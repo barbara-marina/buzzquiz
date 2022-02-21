@@ -12,10 +12,13 @@ div.container-tela2.escondido {
     display: none;
 }
 
-
+.container-tela2 .banner,
+.container-tela2 .pergunta,
+.container-tela2 .bloco-finalizacao {
+    scroll-margin-top: 90px;
+}
 
 .container-tela2 .banner{
-/*margin-top:69px;*/
 height: 142px;
 width: 100vw;
 background-size: cover;
@@ -116,6 +119,8 @@ grid-gap: 12px;
 .imagem-pergunta{
 width: 163px;
 height: 113px;
+
+cursor: pointer;
 }
 
 .container-tela2 .bloco-finalizacao {
@@ -177,6 +182,7 @@ height: 113px;
     line-height: 21px;
     line-height: 21px;
     color: #fff5f4;
+    cursor: pointer;    
 }
   
 .container-tela2 .voltar-home {
@@ -184,6 +190,7 @@ height: 113px;
     color: #818181;
     font-size: 18px;
     line-height: 21px;
+    cursor: pointer;
 }
   
 
