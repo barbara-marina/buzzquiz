@@ -1,6 +1,7 @@
 let dadosQuizz = {};
 
 function criarQuizzInfoBasicas() {
+    //mostrarLoading()
     esconderTela1();
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Comece pelo começo</h1>
@@ -224,6 +225,7 @@ function validarNiveis() {
 }
 
 function enviarDadosQuizz(){
+    //mostrarLoading()
     esconderTela1();
     let promessa = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", dadosQuizz);
     promessa.then(criarQuizzSucesso);
@@ -238,6 +240,7 @@ function atulizarChaveLocalStorage(resposta) {
 }
 
 function criarQuizzSucesso(resposta) {
+    //esconderLoading()
     atulizarChaveLocalStorage(resposta);
     document.querySelector(".container-tela3").innerHTML = `
         <h1>Seu quizz está pronto!</h1>
@@ -248,4 +251,16 @@ function criarQuizzSucesso(resposta) {
         <button onclick="esconderTela3(); chamarTela2(${resposta.data.id})" >Acessar Quizz</button>
         <p onclick="esconderTela3(); chamarTela1()" >Voltar pra home</p>
     `;
+
+    
 }
+
+// function mostrarLoading(){
+//     let conteudo = document.querySelector(".container-tela3")
+//     conteudo.innerHTML=` 
+//     <div class="loading">
+//        <img class="imagem-loading" src="./assets/loading.gif"/>
+//        <h3 class="titulo-loading>Carregando</h3>
+//     </div>
+//      `
+// }

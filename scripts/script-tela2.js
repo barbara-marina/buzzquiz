@@ -8,6 +8,7 @@ let numeroNiveis = null;
 
 function solicitarQuizz(idQuizzSelecionado){
     ID_DO_QUIZZ = idQuizzSelecionado;
+    mostrarLoading(".container-tela2");
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${ID_DO_QUIZZ}`)
 
     promisse.then(carregarQuizSelecionado);
@@ -15,6 +16,7 @@ function solicitarQuizz(idQuizzSelecionado){
 }
 
 function carregarQuizSelecionado(response){
+    esconderLoading() 
     esconderTela1();
     esconderTela3();
     contadorAcertos=0;
@@ -39,7 +41,7 @@ function carregarQuizSelecionado(response){
         document.querySelector(".container-tela2").innerHTML += ` 
 
         <div class="bloco-perguntas ">
-            <div class="pergunta titulo${i}">${perguntas[i]?.title}</div>
+            <div class="pergunta titulo${i}" data-identifier="question">${perguntas[i]?.title}</div>
             <div class="alternativas">
             ${carregarRespostas(perguntas[i]?.answers, i)}
             </div>
@@ -48,9 +50,24 @@ function carregarQuizSelecionado(response){
         let pergunta = document.querySelector(`.titulo${i}`);
         pergunta.style.backgroundColor = `${perguntas[i]?.color}`   
     }
-
+  
 }
 //  solicitarQuizz(); // Essa linha deve ser excluída quando todos os códigos forem integrados
+
+function mostrarLoading(container){
+ let conteudo = document.querySelector(container)
+ conteudo.innerHTML=` 
+ <div class="loading">
+    <img class="imagem-loading" src="./assets/loading.gif"/>
+    <h3 class="titulo-loading">Carregando</h3>
+ </div>
+  `
+}
+
+function esconderLoading(){
+    let loading = document.querySelector(".loading")
+    loading.style.display = "none"
+}
 
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -66,7 +83,7 @@ function carregarRespostas(answers, indexPergunta){
 
     for (let i=0; i<arrayRespostas.length; i++){
         respostas  +=`
-        <div>
+        <div data-identifier="answer">
             <img onclick="verificaResposta(this, ${i},${indexPergunta})" class="imagem-pergunta" alt="${answers[i].text}" src="${answers[i].image}" >
             <p><span class="${answers[i].isCorrectAnswer} esconder-resposta" id="${indexPergunta}-${i}-${answers[i].isCorrectAnswer}">${answers[i].text}</span></p>
         </div>
@@ -119,10 +136,10 @@ function finalizarQuizz(){
                 if(acertoPercentual>= niveis[i].minValue){
                     let conteudo = document.querySelector(".container-tela2");
                     conteudo.innerHTML+=`
-                    <div class="bloco-finalizacao">
+                    <div class="bloco-finalizacao" data-identifier="quizz-result">
                         <div class="percentual-acerto">${acertoPercentual}% de acerto: ${niveis[i]?.title}</div>
                         <div class="divisao">
-                            <img class="imagem-finalizacao"  src="${niveis[i]?.image}"/>
+                            <img class="imagem-finalizacao" alt="${niveis[i].text}" src="${niveis[i]?.image}"/>
                             <div class="texto-finalizacao">
                             ${niveis[i]?.text}
                             </div>

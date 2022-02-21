@@ -80,6 +80,7 @@ function solicitarTodosOsQuizzes(){
 }
 
 function solicitarQuizzesDoUsuario(){
+
     let requisicao = axios.get(URL_BUZZQUIZZ); //mudar essa lógica depois que for capaz de filtrar quizzes do usuario
 
     requisicao.then(inserirQuizzesDoUsuarioNaTela);
@@ -139,3 +140,4 @@ function carregarLayoutTela1(){
 
 verificarQuizzesDoUsuarioLocalStorage();
 carregarLayoutTela1();
+
